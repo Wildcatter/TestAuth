@@ -22,7 +22,7 @@
 		  <button type="submit" class="btn btn-default" id="login">Log in</button>
 		  <button type="submit" class="btn btn-default" id="join">Join</button>
 		  <button type="submit" class="btn btn-default" id="logout">Log out</button>
-		  <fb:login-button data-auto-logout-link="true" id="fbook" scope="public_profile,email" size="large"></fb:login-button>
+		  <!-- <fb:login-button data-auto-logout-link="true" id="fbook" scope="public_profile,email" size="large"></fb:login-button> -->
 		 </div>
 	</div>
 
@@ -61,11 +61,29 @@ var database = firebase.database();
 const auth = firebase.auth();
 var provider = new firebase.auth.FacebookAuthProvider();
 
-auth.signInWithRedirect(provider);
+
 // $(document).on("click", "#fbook", function () {
 // 	firebase.auth().signInWithRedirect(provider); 
 // });
 
+$("#join").on("click", function() {
+	firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
+};
 // $(document).on("click", "#join", function() {
 // 	//const email = $("#email").val();
 // 	//const password = $("#pwd").val();
@@ -81,17 +99,17 @@ auth.signInWithRedirect(provider);
 // 	//promise.catch(e=> console.log(e.message));
 // });
 
-firebase.auth().onAuthStateChanged(firebaseUser => {
-	if(firebaseUser) {
-		console.log(firebaseUser);
-	} else {
-		console.log("not logged in");
-	}
-});
+// firebase.auth().onAuthStateChanged(firebaseUser => {
+// 	if(firebaseUser) {
+// 		console.log(firebaseUser);
+// 	} else {
+// 		console.log("not logged in");
+// 	}
+// });
 
-$(document).on("click", "#logout", function(){
-	firebase.auth().signOut();
-});
+// $(document).on("click", "#logout", function(){
+// 	firebase.auth().signOut();
+// });
 
 
 </script>
