@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container-fluid main">
+		<div class="row-fluid">
+		  <div class="form-group">
+		    <label for="email">Email address:</label>
+		    <input type="email" class="form-control" placeholder="Email" id="email">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">Password:</label>
+		    <input type="password" class="form-control" placeholder="Password" id="pwd">
+		  </div>
+		  <div class="checkbox">
+		    <label><input type="checkbox"> Remember me</label>
+		  </div>
+		  <button type="submit" class="btn btn-default" id="login">Log in</button>
+		  <button type="submit" class="btn btn-default" id="join">Join</button>
+		  <button type="submit" class="btn btn-default" id="logout">Log out</button>
+		  <fb:login-button data-auto-logout-link="true" scope="public_profile,email" size="large"></fb:login-button>
+		 </div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+	<script src="//connect.facebook.net/en_US/sdk.js"></script>
+
+<script>
+
+
+	// facebook app id = 664826037014450
+	// facebook secret id = 088a4c5619143159da7c61cf8f1c5559
+
+
+  // Initialize Firebase
+  	var config = {
+    apiKey: "AIzaSyDaPvYALiV1qQwyDxIrIfkwCUerTu_uSiA",
+    authDomain: "firstproject-b5d04.firebaseapp.com",
+    databaseURL: "https://firstproject-b5d04.firebaseio.com",
+    storageBucket: "firstproject-b5d04.appspot.com",
+  	};
+  	firebase.initializeApp(config);
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '664826037014450',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+  };
+
+FB.Event.subscribe('auth.authResponseChange', checkLoginState);
+
+var database = firebase.database();
+const auth = firebase.auth();
+var provider = new firebase.auth.FacebookAuthProvider();
+
+$(document).on("click", "#join", function() {
+	auth.signInWithRedirect(provider);
+	//const email = $("#email").val();
+	//const password = $("#pwd").val();
+	//const promise = auth.createUserWithEmailAndPassword(email,password);
+	//promise.then(user => console.log(user));
+//	promise.catch(e=> console.log(e.message));
+});
+
+$(document).on("click", "#login", function() {
+	const email = $("#email").val();
+	const password = $("#pwd").val();
+	const promise = auth.signInWithEmailAndPassword(email, password);
+	//promise.catch(e=> console.log(e.message));
+});
+
+firebase.auth().onAuthStateChanged(firebaseUser => {
+	if(firebaseUser) {
+		console.log(firebaseUser);
+	} else {
+		console.log("not logged in");
+	}
+});
+
+$(document).on("click", "#logout", function(){
+	firebase.auth().signOut();
+});
+
+
+</script>
+</body>
+</html>
