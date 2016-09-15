@@ -47,13 +47,13 @@
   	};
   	firebase.initializeApp(config);
 
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '664826037014450',
-      xfbml      : true,
-      version    : 'v2.7'
-    });
-  };
+  // window.fbAsyncInit = function() {
+  //   FB.init({
+  //     appId      : '664826037014450',
+  //     xfbml      : true,
+  //     version    : 'v2.7'
+  //   });
+  // };
 
 // FB.Event.subscribe('auth.authResponseChange', checkLoginState);
 
@@ -61,7 +61,7 @@ var database = firebase.database();
 const auth = firebase.auth();
 var provider = new firebase.auth.FacebookAuthProvider();
 
-$(document).on("click", "#facebook", function () {
+$(document).on("click", "#fbook", function () {
 	firebase.auth().signInWithRedirect(provider); 
 });
 
