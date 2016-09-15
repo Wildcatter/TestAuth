@@ -61,25 +61,25 @@ var database = firebase.database();
 const auth = firebase.auth();
 var provider = new firebase.auth.FacebookAuthProvider();
 
+auth.signInWithRedirect(provider);
 // $(document).on("click", "#fbook", function () {
 // 	firebase.auth().signInWithRedirect(provider); 
 // });
 
-$(document).on("click", "#join", function() {
-	auth.signInWithRedirect(provider);
-	//const email = $("#email").val();
-	//const password = $("#pwd").val();
-	//const promise = auth.createUserWithEmailAndPassword(email,password);
-	//promise.then(user => console.log(user));
-//	promise.catch(e=> console.log(e.message));
-});
+// $(document).on("click", "#join", function() {
+// 	//const email = $("#email").val();
+// 	//const password = $("#pwd").val();
+// 	//const promise = auth.createUserWithEmailAndPassword(email,password);
+// 	//promise.then(user => console.log(user));
+// //	promise.catch(e=> console.log(e.message));
+// });
 
-$(document).on("click", "#login", function() {
-	const email = $("#email").val();
-	const password = $("#pwd").val();
-	const promise = auth.signInWithEmailAndPassword(email, password);
-	//promise.catch(e=> console.log(e.message));
-});
+// $(document).on("click", "#login", function() {
+// 	const email = $("#email").val();
+// 	const password = $("#pwd").val();
+// 	const promise = auth.signInWithEmailAndPassword(email, password);
+// 	//promise.catch(e=> console.log(e.message));
+// });
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
 	if(firebaseUser) {
