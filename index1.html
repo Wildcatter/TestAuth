@@ -19,11 +19,12 @@
 		  <div class="checkbox">
 		    <label><input type="checkbox"> Remember me</label>
 		  </div>
-		  <button type="submit" class="btn btn-default" id="login">Log in</button>
 		  <button type="submit" class="btn btn-default" id="join">Join</button>
+		  <button type="submit" class="btn btn-default" id="login">EmailLogin</button>
+		  <button type="submit" class="btn btn-default" id="fbook">FbookLogin</button>
+		  <button type="submit" class="btn btn-default" id="googs">Googs</button>  
 		  <button type="submit" class="btn btn-default" id="logout">Log out</button>
-		  <fb:login-button scope="public_profile,email" id="fbook" onlogin="checkLoginState();">Facebook
-		  </fb:login-button>
+		  <fb:login-button data-auto-logout-link="true" id="fbook" scope="public_profile,email" size="large"></fb:login-button>
 		 </div>
 	</div>
 
@@ -61,49 +62,50 @@
 // FB.Event.subscribe('auth.authResponseChange', checkLoginState);
 
 var database = firebase.database();
-//const auth = firebase.auth();
+const auth = firebase.auth();
 var provider = new firebase.auth.FacebookAuthProvider();
+var googprovider = new firebase.auth.GoogleAuthProvider();
 
+
+$(document).on("click", "#fbook", function() {
+	firebase.auth().signInWithRedirect(provider);
+});
+
+
+$(document).on("click", "#login", function() {
+	const email = $("#email").val();
+	const password = $("#pwd").val();
+	const promise = auth.signInWithEmailAndPassword(email, password);
+	//promise.catch(e=> console.log(e.message));
+});
 
 $(document).on("click", "#join", function() {
-	firebase.auth().signInWithRedirect(provider);
+	const email = $("#email").val();
+	const password = $("#pwd").val();
+	const promise = auth.createUserWithEmailAndPassword(email,password);
+	promise.then(user => console.log(user));
+	promise.catch(e=> console.log(e.message));
+});
+
+$(document).on("click", "#googs", function() {
+	firebase.auth().signInWithRedirect(googprovider);
+});
+
+firebase.auth().onAuthStateChanged(firebaseUser => {
+	if(firebaseUser) {
+		console.log(firebaseUser);
+	} else {
+		console.log("not logged in");
+	}
+});
+
+$(document).on("click", "#logout", function(){
+	firebase.auth().signOut();
 });
 
 
 
 
-// $(document).on("click", "#login", function() {
-// 	const email = $("#email").val();
-// 	const password = $("#pwd").val();
-// 	const promise = auth.signInWithEmailAndPassword(email, password);
-// 	//promise.catch(e=> console.log(e.message));
-// });
-
-// firebase.auth().onAuthStateChanged(firebaseUser => {
-// 	if(firebaseUser) {
-// 		console.log(firebaseUser);
-// 	} else {
-// 		console.log("not logged in");
-// 	}
-// });
-
-// $(document).on("click", "#logout", function(){
-// 	firebase.auth().signOut();
-// });
-
-
-// database.authWithOAuthRedirect("facebook", function(error) {
-// 	  if (error) {
-// 	    console.log("Login Failed!", error);
-// 	  } else {
-// 	    // We'll never get here, as the page will redirect on success.
-// 	  }
-// 	});
-// 	//const email = $("#email").val();
-// 	//const password = $("#pwd").val();
-// 	//const promise = auth.createUserWithEmailAndPassword(email,password);
-// 	//promise.then(user => console.log(user));
-// //	promise.catch(e=> console.log(e.message));
 </script>
 </body>
 </html>
