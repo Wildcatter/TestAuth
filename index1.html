@@ -22,7 +22,8 @@
 		  <button type="submit" class="btn btn-default" id="login">Log in</button>
 		  <button type="submit" class="btn btn-default" id="join">Join</button>
 		  <button type="submit" class="btn btn-default" id="logout">Log out</button>
-		  <fb:login-button data-auto-logout-link="true" id="fbook" scope="public_profile,email" size="large"></fb:login-button>
+		  <fb:login-button scope="public_profile,email" id="fbook" onlogin="checkLoginState();">
+		  </fb:login-button>
 		 </div>
 	</div>
 
