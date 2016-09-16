@@ -28,7 +28,9 @@
 
 	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-database.js"></script>
 	<script src="//connect.facebook.net/en_US/sdk.js"></script>
 
 <script>
@@ -47,56 +49,75 @@
   	};
   	firebase.initializeApp(config);
 
-  window.fbAsyncInit = function() {}
-    FB.init({
-      appId      : 664826037014450,
-      xfbml      : true,
-      version    : 'v2.7'
-    });
-  };
+  // window.fbAsyncInit = function() {
+  //   FB.init({
+  //     appId      : 664826037014450,
+  //     xfbml      : true,
+  //     version    : 'v2.7'
+  //   });
+  // };
 
-FB.Event.subscribe('auth.authResponseChange', checkLoginState);
+// FB.Event.subscribe('auth.authResponseChange', checkLoginState);
 
 var database = firebase.database();
-const auth = firebase.auth();
+//const auth = firebase.auth();
 var provider = new firebase.auth.FacebookAuthProvider();
 
 
 $(document).on("click", "#join", function() {
-	database.authWithOAuthRedirect("facebook", function(error) {
-	  if (error) {
-	    console.log("Login Failed!", error);
-	  } else {
-	    // We'll never get here, as the page will redirect on success.
-	  }
-	});
-	//const email = $("#email").val();
-	//const password = $("#pwd").val();
-	//const promise = auth.createUserWithEmailAndPassword(email,password);
-	//promise.then(user => console.log(user));
-//	promise.catch(e=> console.log(e.message));
+	firebase.auth().signInWithPopup(provider).then(function(result) {
+  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
 });
-
-$(document).on("click", "#login", function() {
-	const email = $("#email").val();
-	const password = $("#pwd").val();
-	const promise = auth.signInWithEmailAndPassword(email, password);
-	//promise.catch(e=> console.log(e.message));
-});
-
-firebase.auth().onAuthStateChanged(firebaseUser => {
-	if(firebaseUser) {
-		console.log(firebaseUser);
-	} else {
-		console.log("not logged in");
-	}
-});
-
-$(document).on("click", "#logout", function(){
-	firebase.auth().signOut();
 });
 
 
+
+
+// $(document).on("click", "#login", function() {
+// 	const email = $("#email").val();
+// 	const password = $("#pwd").val();
+// 	const promise = auth.signInWithEmailAndPassword(email, password);
+// 	//promise.catch(e=> console.log(e.message));
+// });
+
+// firebase.auth().onAuthStateChanged(firebaseUser => {
+// 	if(firebaseUser) {
+// 		console.log(firebaseUser);
+// 	} else {
+// 		console.log("not logged in");
+// 	}
+// });
+
+// $(document).on("click", "#logout", function(){
+// 	firebase.auth().signOut();
+// });
+
+
+// database.authWithOAuthRedirect("facebook", function(error) {
+// 	  if (error) {
+// 	    console.log("Login Failed!", error);
+// 	  } else {
+// 	    // We'll never get here, as the page will redirect on success.
+// 	  }
+// 	});
+// 	//const email = $("#email").val();
+// 	//const password = $("#pwd").val();
+// 	//const promise = auth.createUserWithEmailAndPassword(email,password);
+// 	//promise.then(user => console.log(user));
+// //	promise.catch(e=> console.log(e.message));
 </script>
 </body>
 </html>
