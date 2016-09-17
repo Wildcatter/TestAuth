@@ -33,7 +33,7 @@
 	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-database.js"></script>
-	<script src="//connect.facebook.net/en_US/sdk.js"></script>
+	<!-- <script src="//connect.facebook.net/en_US/sdk.js"></script> -->
 
 <script>
 
@@ -65,6 +65,8 @@ var database = firebase.database();
 const auth = firebase.auth();
 var provider = new firebase.auth.FacebookAuthProvider();
 var googprovider = new firebase.auth.GoogleAuthProvider();
+var uidUser;
+var currentUserRef;
 
 
 $(document).on("click", "#fbook", function() {
@@ -94,6 +96,15 @@ $(document).on("click", "#googs", function() {
 firebase.auth().onAuthStateChanged(firebaseUser => {
 	if(firebaseUser) {
 		console.log(firebaseUser);
+		uidUser = firebase.auth().currentUser.uid;
+		(console.log(uidUser));
+		currentUserRef = database.ref('Users/'+uidUser);
+		currentUserRef.set({
+			name: "asds",
+			favorites: "asdasd",
+			butt: "hey",
+		});
+		console.log(currentUserRef);
 	} else {
 		console.log("not logged in");
 	}
