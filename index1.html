@@ -69,6 +69,7 @@ var provider = new firebase.auth.FacebookAuthProvider();
 var googprovider = new firebase.auth.GoogleAuthProvider();
 var uidUser;
 var currentUserRef;
+var user;
 
 
 firebase.auth().getRedirectResult().then(function(result) {
@@ -80,17 +81,10 @@ firebase.auth().getRedirectResult().then(function(result) {
     // ...
   }
   // The signed-in user info.
-  var user = result.user;
-  FB.api(
-    "/{user-id}",
-    function (response) {
-      if (response && !response.error) {
-        /* handle the result */
-        console.log(response.user.displayName);
-        $(".fbook").html(response.user.displayName);
-      };
-    })
-    console.log(response.user.displayName);
+  user = result.user;
+  console.log(result.user.displayName);
+  $(".fbook").html(result.user.displayName);
+
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
