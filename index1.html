@@ -81,11 +81,16 @@ firebase.auth().getRedirectResult().then(function(result) {
   }
   // The signed-in user info.
   var user = result.user;
-  FB.api('/me', function(response) {
-    console.log(JSON.stringify(response));
+  FB.api(
+    "/{user-id}",
+    function (response) {
+      if (response && !response.error) {
+        /* handle the result */
+        console.log(response.user.displayName);
+        $(".fbook").html(response.user.displayName);
+      };
+    })
     console.log(response.user.displayName);
-    $(".fbook").html(response.user.displayName);
-});
 }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
