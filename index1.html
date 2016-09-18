@@ -85,9 +85,9 @@ firebase.auth().getRedirectResult().then(function(result) {
   console.log(user.displayName);
   console.log(user.email);
   console.log(user.photoURL);
-  $(".fbook").html(result.user.displayName);
-  $(".fbook").append(result.email);
-  $(".fbook").append('<img src =' + result.photoURL + '>')
+  $(".fbook").html(user.displayName);
+  $(".fbook").append(user.email);
+  $(".fbook").append('<img src =' + user.photoURL + '>')
 
 }).catch(function(error) {
   // Handle Errors here.
