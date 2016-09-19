@@ -64,7 +64,7 @@ var eventObj = {
 				let html = '<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 event-box">' +
 		                  		'<div class="panel event-content text-center" id="event' + index + '">' +
 		                    		'<h3 class="event-name" data-name="' + name + '">' + name + '</h3>' +
-		                    		'<p class="event-date" data-date="' + date + '">' + date + '</p>' +
+		                    		// '<p class="event-date" data-date="' + date + '">' + date + '</p>' +
 		                    		'<p class="event-desc" data-desc="' + longDesc + '">' + shortDesc + '</p>' +
 		                  		'</div>' +
 		                  		'<button type="button" class="btn btn-lg btn-block fav-button">add favorite</button>' +
@@ -111,8 +111,8 @@ $(document).ready(function() {
 		$('#modal-event-name').text(data);
 
 		// Get event date
-		data = $(parentId + ' p.event-date').data("date");
-		$('#modal-event-date').text(data);
+		// data = $(parentId + ' p.event-date').data("date");
+		// $('#modal-event-date').text(data);
 
 		// Get event description
 		data = $(parentId + ' p.event-desc').data("desc");
