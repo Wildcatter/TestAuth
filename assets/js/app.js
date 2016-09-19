@@ -45,7 +45,7 @@ var eventObj = {
 				var name = item.name.text;
 
 				// Set easy access to date. Format it using moment.js plugin
-				var date = moment(item.start.local).format('MMMM Do YYYY');
+				// var date = moment(item.start.local).format('MMMM Do YYYY');
 
 				// Set easy access to event description
 				var desc = item.description.text;
