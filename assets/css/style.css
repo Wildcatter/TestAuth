@@ -3,7 +3,7 @@
  * Created: 09/08/2016 by Saray Reyes, Garett Francis, Matt Holland
  * Located: fileLocation/assets/css/style.css
  * Purpose: Provide styling instructions for group project #1 main page template - Event searcher
- */
+ */ 
 
 /* Google fonts available on page...
 font-family: 'Raleway', sans-serif;
@@ -18,31 +18,14 @@ font-family: 'Bungee Hairline', cursive;
 font-family: 'Wire One', sans-serif;
 */
 
-/* Apply Google font to main body */
-body {
-	font-family: 'Josefin Sans', sans-serif;
-}
-
-/* Global class for centering text */
-.text-center {
-	text-align: center;
-}
-
 /* Center-align incomplete bootstrap column blocks */
 .col-centered{
     float: none;
     margin: 0 auto;
 }
 
-/* Style the main login link */
-.login-link {
-    color: #fff;
-    margin-left: 30px;
-}
-
 /* Main page heading */
 .jumbotron {
-	padding-top: 5px;
 	margin-bottom: 0;
 	background: transparent;
 	color: #fff;
@@ -54,15 +37,14 @@ body {
 
 /* Main page content container */
 .main {
-	margin-top: 0;
+	margin-top: 3%;
 }
 
 /* All form labels */
 label {
 	color: #fff;
-	font-weight: 500;
+	font-weight: 100;
 	font-size: 2em;
-  text-shadow: 2px 1px 2px black;
 }
 
 /* Remove form input background, and make border thinner */
@@ -77,34 +59,6 @@ input, select {
 	height: 45px;
 	background-color: transparent;
 	color: #fff;
-	font-weight: 500;
+	font-weight: 100;
 	font-size: 1.5em;
-
-	/* copy of bootstrap input shadows.  Made border white and shadow gray (#ccc) */
-	border-color: #fff;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(204,204,204, .6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(204,204,204,.6);
 }
-
-/* Styling for </p> submit container */
-/* Global styles for all buttons */
- .search-submit {
- 	margin-top: 20px;
- 	cursor: pointer;
- 	width: 100%;
-    color: #fff;
-    padding: 10px;
-    border-radius: 3px;
-    background-color: rgba(49,192,197, 0.8);
-    border: none;
-    transition: .5s;
-    font-size: 25px;
-    font-weight: bold;
- }
-
- .search-submit:hover, .search-submit:active, .search-submit:focus {
- 	color: #fff;
- 	background-color: #31C0C5;
- 	outline: none;
- }

@@ -19,226 +19,159 @@
  #239095 - darker robin blue for hover
  #154D4F - darkest robin blue for click border
  #FEDC32 - daisy yellow
- #BFBFBF - light gray used on fonts and borders
- #717171 - dark gray modal header
- #EFEFEF - slider background color
  */
 
- /* Apply dark navy blue background and gray text to body */
- body {
- 	font-family: 'Josefin Sans', sans-serif;
- 	background-color: #0A0A0A;
- 	color: #BFBFBF;
- }
-
- /*Make all paragraph text black and bold*/
- p {
-   color: black;
-   font-weight: bold;
- }
-
- /* Main program title in top left of screen */
- a.navbar-brand {
- 	font-weight: 200;
- 	font-size: 20px;
- }
-
- /*Eventastic div*/
- .navbar-inverse .navbar-brand {
- 	color: #FEDC32;
- 	font-size: 32px;
- 	padding-top: 20px;
- 	background-color: #1F1F1F;
- }
-
- /* Nav Bar */
- #navbar {
- 	background-color: #1F1F1F;
- 	border-bottom: 1px solid #BFBFBF;
-  width: 100%;
- }
-
- /* Styling for event modal */
- .modal-title {
- 	color: #FEDC32;
- }
-
- #modal-event-name {
- 	color:  #31C0C5;
-  font-size: 18px;
-  font-weight: bold;
- }
-
- .modal-header {
-  background-color: #717171;
-  border-radius: 4px;
- }
-
- .modal-header span {
-  color: #FEDC32;
- }
-
- /* Make input label thinner */
- label {
- 	font-weight: 200;
- }
-
- /* Dark gray background for sidebar */
- div.sidebar {
- 	background-color: #1F1F1F;
- }
-
- /* Move sidebar heading down a bit, and reduce font weight */
- .nav li a.sidebar-heading {
- 	padding-top: 0;
- 	padding-bottom: 30px;
- 	color: orange;
- 	font-weight: 200;
- }
-
- /* Remove white background on li hover event */
- .nav li a:hover {
- 	background: none;
- }
-
- /* Put the buttons in the middle of the sidebar, make transition effect slow */
- li {
- 	text-align: center;
- 	transition: .5s;
- }
-
- #dashboard-content li:hover {
- 	background-color: none;
- 	color: #FEDC32;
- }
-
- li h2 {
- 	font-weight: 200;
- }
-
- /*Remove box and outline from the sidebar buttons*/
- .click-option {
- 	background: none;
- 	border: none;
- 	outline: none;
- 	font-size: 24px;
- 	color: #BFBFBF;
-  transition: .5s;
- }
-
- /*Hover color for the sidebar buttons*/
- .click-option:hover {
- 	color: #FEDC32;
- }
-
- /* Move input field left to make room away from edge of screen */
- input.input-generate {
- 	margin-right: 5px;
- }
-
- /* Global styles for all buttons */
- .btn {
-  font-size: 16px;
- 	border-radius: 3px;
- 	background-color: #31C0C5;
- 	border: none;
- 	transition: .5s;
-  color: #fff;
- }
-
- .btn:hover, .btn:active, .btn:focus, .btn:active:focus {
- 	color: #fff;
- 	background-color: #239095;
- 	outline: none;
- }
-
- .clear-btn {
- 	margin-right: 10px;
- }
-
- /* Styling for favorite buttons */
- .fav-button {
- 	font-weight: bold;
-  font-size: 20px;
- 	background-color: #31C0C5;
- 	border: none;
- 	color: #fff;
- 	border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  transition: .5s;
- }
-
- /* Make search icon light blue */
- .glyphicon-plus {
- 	color: #FEDC32;
- }
-
- /* Align search icon inside of input field */
- span.plus-icon {
- 	margin-top: 8px;
- 	padding-right: 40px;
- }
-
- /* Make sure that search icon has pointer on hover event */
- span.form-control-feedback {
- 	pointer-events: visible;
- 	cursor: pointer;
- }
-
- /* Parent container for each individual event box */
- .event-box {
- 	margin-bottom: 30px;
- 	cursor: pointer;
- }
-
- /* Override Bootstrap panel styling. Make sure there is no margin on bottom so that fav button looks seamless as part of container */
- .panel {
- 	background-color: #ECECEC;
- 	height: 215px;
- 	margin-bottom: 0;
- 	border-bottom-left-radius: 0;
- 	border-bottom-right-radius: 0;
- }
-
- /* Give main page heading a lighter weight for aesthetics */
- h1 {
- 	font-weight: 200;
- }
-
- /* Give main page heading a gray bottom border */
- h1.page-header {
- 	border-bottom: .5px solid #BFBFBF;
- 	margin-bottom: 5px;
- }
-
- h3 {
- 	color: #1F1F1F;
-  font-weight: bold;
- }
-
-/*Give the main page header some bottom margin*/
- .main .page-header {
-  margin-bottom: 30px;
+/* Apply dark navy blue background and gray text to body */
+body {
+	font-family: 'Josefin Sans', sans-serif;
+	background-color: #0A0A0A;
+	color: #BFBFBF;
 }
 
- /*Slide Reveal bar*/
- .slide-reveal {
-  color: #31C0C5;
-  box-sizing: 100px;
- }
+/* Main program title in top left of screen */
+a.navbar-brand {
+	font-weight: 200;
+	font-size: 20px;
+}
 
- #slider {
-   background-color: #EFEFEF;
-   text-align: center;
- }
- /*Slider button*/
- .trigger {
-  outline: none;
- }
+/*Eventastic div*/
+.navbar-inverse .navbar-brand {
+	color: #FEDC32;
+	font-size: 32px;
+	padding-top: 20px;
+	background-color: #1F1F1F;
+}
 
- /* Only add sidebar border on larger screens */
- @media (min-width: 768px) {
- 	.sidebar {
- 		border-right: 1px solid #BFBFBF;
- 	}
- }
+/*Nav Bar*/
+#navbar {
+	background-color: #1F1F1F;
+	border-bottom: 1px solid #BFBFBF;
+}
+
+/* Make input label thinner */
+label {
+	font-weight: 200;
+}
+
+/* Dark gray background for sidebar */
+div.sidebar {
+	background-color: #1F1F1F;
+}
+
+/* Move sidebar heading down a bit, and reduce font weight */
+.nav li a.sidebar-heading {
+	padding-top: 0;
+	padding-bottom: 30px;
+	color: orange;
+	font-weight: 200;
+}
+
+/* Remove white background on li hover event */
+.nav li a:hover {
+	background: none;
+}
+
+/* Put the buttons in the middle of the sidebar, make transition effect slow */
+li {
+	text-align: center;
+	transition: .5s;
+}
+
+#dashboard-content li:hover {
+	background-color: none;
+	color: #FEDC32;
+}
+
+li h2 {
+	font-weight: 200;
+}
+
+/* Move input field left to make room away from edge of screen */
+input.input-generate {
+	margin-right: 5px;
+}
+
+/* Styling for all side buttons */
+.btn {
+	border-radius: 3px;
+}
+
+button {
+	color: #fff;
+	background-color: #4aaaa5;
+	transition: .5s;
+}
+
+button:hover {
+	color: #fff;
+}
+
+.clear-btn {
+	margin-right: 10px;
+}
+
+/*Add Favorite Buttons*/
+.btn-primary {
+	font-weight: bold;
+	background-color: #31C0C5;
+	border: none;
+}
+
+/* Override Bootstrap #333 text color on hover */
+.btn:hover {
+	color: #fff;
+	background-color: #239095;
+}
+.btn:active {
+	color: #fff;
+	background-color: #239095 !important;
+	outline: none !important;
+}
+.btn:focus {
+	color: #fff;
+	background-color: #239095 !important;
+	outline: none;
+}
+
+
+/* Make search icon light blue */
+.glyphicon-plus {
+	color: #FEDC32;
+}
+
+/* Align search icon inside of input field */
+span.plus-icon {
+	margin-top: 8px;
+	padding-right: 40px;
+}
+
+/* Make sure that search icon has pointer on hover event */
+span.form-control-feedback {
+	pointer-events: visible;
+	cursor: pointer;
+}
+
+.panel {
+	background-color: #ECECEC;
+}
+/* Give main page heading a lighter weight for aesthetics */
+h1 {
+	font-weight: 200;
+}
+
+/* Give main page heading a gray bottom border */
+h1.page-header {
+	border-bottom: .5px solid #BFBFBF;
+	margin-bottom: 5px;
+}
+
+h3 {
+	color: #1F1F1F;
+}
+
+/* Only add sidebar border on larger screens */
+@media (min-width: 768px) {
+	.sidebar {
+		border-right: 1px solid #BFBFBF;
+	}
+}
