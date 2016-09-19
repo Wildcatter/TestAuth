@@ -79,13 +79,13 @@ var eventObj = {
 
 $(document).ready(function() {
 
-    // Slide Reveal function
-    $("#slider").slideReveal({
-        trigger: $("#trigger"),
-        push: false,
-        overlay: true,
-        position: "right"
-    });
+    // // Slide Reveal function
+    // $("#slider").slideReveal({
+    //     trigger: $("#trigger"),
+    //     push: false,
+    //     overlay: true,
+    //     position: "right"
+    // });
 
 	// Get the events on initial page load (50 of the first "All" events from the api)
     var dataObj = {
