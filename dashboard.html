@@ -57,8 +57,9 @@
             <!-- Main program nav display -->
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="navbar-form navbar-right">
-                    <button class="btn"> find events </button>
-                    <label> sign up </label>
+                    <span id="name"></span> <span id="pic"></span>
+                    <!-- <button class="btn"> find events </button> -->
+                    <!-- <label> sign up </label> -->
                     <!-- Input field for new topic button generation -->
                    <!--  <input type="text" class="form-control input-generate player-join-input" placeholder="enter your email..."> -->
                     <!-- Search icon, registers click for new topic button generation, or via onkeyup Enter kay -->
@@ -135,6 +136,21 @@
     <!-- Slide Reveal side Bar -->
    <!--  <script src="http://code.jquery.com/jquery-[latest].min.js"></script> -->
     <!-- <script src="assets/vendor/jquery-slidereveal/jquery.slidereveal.min.js"></script> -->
+    <script>
+    const database = firebase.database();
+    const auth = firebase.auth();
+    var user = firebase.auth().currentUser;
 
+    if (user) {
+  // User is signed in.
+        const uidUser = firebase.auth().currentUser.uid;
+        const currentUserRef = database.ref('Users/'+uidUser);
+        $("#name").html(currentUserRef.name);
+        $("#pic").html('<img src='+currentUserRef.photo+'>');
+    } else {
+  // No user is signed in.
+    }
+
+    </script>
 </body>
 </html>
