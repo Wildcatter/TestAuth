@@ -139,6 +139,7 @@ $(document).on("click", "#googs", function() {
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
 	if(firebaseUser) {
+		window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
 		console.log(firebaseUser);
 		uidUser = firebase.auth().currentUser.uid;
 		(console.log(uidUser));
@@ -148,9 +149,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 			email: userEmail,
 			photo: userImg,
 		});
-		currentUser
 		console.log(currentUserRef);
-		window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
 	} else {
 		console.log("not logged in");
 	}
