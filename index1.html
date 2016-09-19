@@ -63,6 +63,18 @@
 
 // FB.Event.subscribe('auth.authResponseChange', checkLoginState);
 
+var database = firebase.database();
+const auth = firebase.auth();
+var provider = new firebase.auth.FacebookAuthProvider();
+var googprovider = new firebase.auth.GoogleAuthProvider();
+var uidUser;
+var currentUserRef;
+var user;
+var userImg;
+var userName;
+var userEmail;
+
+
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
@@ -152,6 +164,6 @@ $(document).on("click", "#logout", function(){
 
 
 
-</script><script src="assets/js/app.js"></script>
+</script>
 </body>
 </html>

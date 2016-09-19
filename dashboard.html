@@ -136,6 +136,15 @@
     <!-- Slide Reveal side Bar -->
    <!--  <script src="http://code.jquery.com/jquery-[latest].min.js"></script> -->
     <!-- <script src="assets/vendor/jquery-slidereveal/jquery.slidereveal.min.js"></script> -->
-    
+
+<script>
+window.onload = function() {
+    if (firebase.auth().currentUser) {
+        console.log("YEP THEYRE LOGGED Input");
+    } else {
+        console.log ("NOPE THEY AINT");
+    }
+};
+</script>
 </body>
 </html>
