@@ -140,11 +140,13 @@
     const database = firebase.database();
     const auth = firebase.auth();
     var user = firebase.auth().currentUser;
+    const uidUser;
+    const currentUserRef;
 
     if (user) {
   // User is signed in.
-        const uidUser = firebase.auth().currentUser.uid;
-        const currentUserRef = database.ref('Users/'+uidUser);
+        uidUser = firebase.auth().currentUser.uid;
+        currentUserRef = database.ref('Users/'+uidUser);
         $("#name").html(currentUserRef.name);
         $("#pic").html('<img src='+currentUserRef.photo+'>');
     } else {
