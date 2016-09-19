@@ -139,11 +139,13 @@
 
 <script>
 window.onload = function() {
-    if (firebase.auth().currentUser) {
-        console.log("YEP THEYRE LOGGED Input");
-    } else {
-        console.log ("NOPE THEY AINT");
-    }
+    setTimeout(function () {
+            if (firebase.auth().currentUser) {
+                console.log("HAYYY");
+            } else {
+                console.log("NOPEEE");
+            }
+    }, 3000);
 };
 </script>
 </body>
