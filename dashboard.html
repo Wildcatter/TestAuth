@@ -147,11 +147,11 @@ window.onload = function() {
                 console.log("HAYYY");
                 uidUser = firebase.auth().currentUser.uid;
                 console.log(uidUser);
-                // currentUserRef = firebase.database().ref('Users/'+uidUser);
-                // console.log(currentUserRef.name);
-                // $("#name").html(currentUserRef.name);
-                // console.log(currentUserRef.photo);
-                // $("#pic").html('<img src='+currentUserRef.photo+'>')
+                currentUserRef = firebase.auth().currentUser
+                console.log(currentUserRef.displayName);
+                $("#name").html(currentUserRef.displayName);
+                console.log(currentUserRef.photoURL);
+                $("#pic").html('<img src='+currentUserRef.photoURL+'>')
             } else {
                 console.log("NOPEEE");
             }
