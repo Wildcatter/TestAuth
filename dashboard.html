@@ -146,11 +146,12 @@ window.onload = function() {
             if (firebase.auth().currentUser) {
                 console.log("HAYYY");
                 uidUser = firebase.auth().currentUser.uid;
-                currentUserRef = firebase.database().ref('Users/'+uidUser);
-                console.log(currentUserRef.name);
-                $("#name").html(currentUserRef.name);
-                console.log(currentUserRef.photo);
-                $("#pic").html('<img src='+currentUserRef.photo+'>')
+                console.log(uidUser);
+                // currentUserRef = firebase.database().ref('Users/'+uidUser);
+                // console.log(currentUserRef.name);
+                // $("#name").html(currentUserRef.name);
+                // console.log(currentUserRef.photo);
+                // $("#pic").html('<img src='+currentUserRef.photo+'>')
             } else {
                 console.log("NOPEEE");
             }
