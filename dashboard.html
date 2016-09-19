@@ -140,8 +140,8 @@
     const database = firebase.database();
     const auth = firebase.auth();
     var user = firebase.auth().currentUser;
-    const uidUser;
-    const currentUserRef;
+    var uidUser;
+    var currentUserRef;
 
     if (user) {
   // User is signed in.
