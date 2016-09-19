@@ -70,6 +70,10 @@ var googprovider = new firebase.auth.GoogleAuthProvider();
 var uidUser;
 var currentUserRef;
 var user;
+var userImg;
+var userName;
+var userEmail;
+
 
 
 firebase.auth().getRedirectResult().then(function(result) {
@@ -82,11 +86,20 @@ firebase.auth().getRedirectResult().then(function(result) {
   }
   // The signed-in user info.
   user = result.user;
+
   console.log(user.displayName);
+  userName = user.displayName;
+
   console.log(user.email);
+  userEmail = user.email;
+
   console.log(user.photoURL);
+  userImg = user.photoURL;
+
   $(".fbook").html(user.displayName);
+
   $(".fbook").append(user.email);
+
   $(".fbook").append('<img src =' + user.photoURL + '>')
 
 }).catch(function(error) {
@@ -130,13 +143,10 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 		uidUser = firebase.auth().currentUser.uid;
 		(console.log(uidUser));
 		currentUserRef = database.ref('Users/'+uidUser);
-		currentUserRef.set({
-			name: "asds",
-			favorites: {
-				name: "asdasd",
-				date: "march 123213",
-			},
-			butt: "hey",
+		currentUserRef.update({
+			name: userName,
+			email: userEmail,
+			photo: userImg,
 		});
 		currentUser
 		console.log(currentUserRef);
