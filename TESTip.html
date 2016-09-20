@@ -19,9 +19,12 @@
 
 	<script>
 
-        $.getJSON("//ip-api.com/json/?callback=?", function(data) {
-            alert("Prepare to get AUTHED in..." + data.city + " " + data.region + " " + data.regionName + " " + data.country + " " + data.timezone);
-        });
+		$.getJSON('https://freegeoip.net/json/').done (function(location) {
+			alert(location.city)
+		});
+        // $.getJSON("//ip-api.com/json/?callback=?", function(data) {
+        //     alert("Prepare to get AUTHED in..." + data.city + " " + data.region + " " + data.regionName + " " + data.country + " " + data.timezone);
+        // });
 //  $(document).ready(function () {
 //     $.getJSON("http://jsonip.com/?callback=?", function (data) {
 //         console.log(data);
