@@ -141,19 +141,21 @@
 var uidUser;
 var currentUserRef;
 var stuff;
+var currentUserProfile;
 
 window.onload = function() {
     setTimeout(function () {
             if (firebase.auth().currentUser) {
                 console.log("HAYYY");
+                currentUserProfile = firebase.auth().currentUser;
                 uidUser = firebase.auth().currentUser.uid;
                 console.log(uidUser);
-                currentUserRef = database.ref('Users/'+uidUser);
-                console.log(currentUserRef.name);
-                $("#name").html(currentUserRef.name);
-                console.log(currentUserRef.photo);
-                $("#pic").html('<img src='+currentUserRef.photo+'>')
-                console.log(currentUserRef.email)
+                currentUserRef = firebase.database().ref('Users/'+uidUser);
+                console.log(currentUserProfile.displayName);
+                $("#name").html(currentUserProfile.displayName);
+                console.log(currentUserProfile.photoURL);
+                $("#pic").html('<img src='+currentUserProfile.photoURL+'>')
+                console.log(currentUserProfile.email)
             } else {
                 console.log("NOPEEE");
             }
