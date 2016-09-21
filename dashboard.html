@@ -149,10 +149,11 @@ window.onload = function() {
                 uidUser = firebase.auth().currentUser.uid;
                 console.log(uidUser);
                 currentUserRef = database.ref('Users/'+uidUser);
-                console.log(currentUserRef.displayName);
-                $("#name").html(currentUserRef.displayName);
-                console.log(currentUserRef.photoURL);
-                $("#pic").html('<img src='+currentUserRef.photoURL+'>')
+                console.log(currentUserRef.name);
+                $("#name").html(currentUserRef.name);
+                console.log(currentUserRef.photo);
+                $("#pic").html('<img src='+currentUserRef.photo+'>')
+                console.log(currentUserRef.email)
             } else {
                 console.log("NOPEEE");
             }
