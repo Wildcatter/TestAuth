@@ -154,7 +154,7 @@ window.onload = function() {
                 console.log(currentUserProfile.displayName);
                 $("#name").html(currentUserProfile.displayName);
                 console.log(currentUserProfile.photoURL);
-                $("#pic").html('<img src='+currentUserProfile.photoURL+'>')
+                $("#pic").html('<img src='+currentUserProfile.photoURL+ "class='img-responsive'" +'>')
                 console.log(currentUserProfile.email)
                 currentUserRef.update({
                     fave1: {
