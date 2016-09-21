@@ -18,9 +18,12 @@
 	<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
 
 	<script>
+	var initialCity;
+	var initialRegion;
 
 		$.getJSON('https://freegeoip.net/json/').done (function(location) {
-			alert(location.city)
+			initialCity = location.city;
+			alert(location.city + " " + location.region_name + " " + location.region_code);
 		});
         // $.getJSON("//ip-api.com/json/?callback=?", function(data) {
         //     alert("Prepare to get AUTHED in..." + data.city + " " + data.region + " " + data.regionName + " " + data.country + " " + data.timezone);
