@@ -156,6 +156,11 @@ window.onload = function() {
                 console.log(currentUserProfile.photoURL);
                 $("#pic").html('<img src='+currentUserProfile.photoURL+'>')
                 console.log(currentUserProfile.email)
+                currentUserRef.update({
+                    fave1: {
+                        "MYFAVEST": "HAY"
+                    };
+                });
             } else {
                 console.log("NOPEEE");
             }
