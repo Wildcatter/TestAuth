@@ -147,7 +147,7 @@ window.onload = function() {
                 console.log("HAYYY");
                 uidUser = firebase.auth().currentUser.uid;
                 console.log(uidUser);
-                currentUserRef = firebase.auth().currentUser
+                currentUserRef = database.ref('Users/'+uidUser);
                 console.log(currentUserRef.displayName);
                 $("#name").html(currentUserRef.displayName);
                 console.log(currentUserRef.photoURL);
@@ -155,7 +155,7 @@ window.onload = function() {
             } else {
                 console.log("NOPEEE");
             }
-    }, 2000);
+    }, 1000);
 };
 </script>
 </body>
