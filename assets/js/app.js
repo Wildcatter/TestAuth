@@ -1,13 +1,12 @@
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyA9gw81RM2br5S9X55E0G6ZGjJMo1oDVRs",
-  authDomain: "eventi-testing-db.firebaseapp.com",
-  databaseURL: "https://eventi-testing-db.firebaseio.com",
-  storageBucket: "eventi-testing-db.appspot.com",
-  messagingSenderId: "393804341426"
-};
+    apiKey: "AIzaSyDaPvYALiV1qQwyDxIrIfkwCUerTu_uSiA",
+    authDomain: "firstproject-b5d04.firebaseapp.com",
+    databaseURL: "https://firstproject-b5d04.firebaseio.com",
+    storageBucket: "firstproject-b5d04.appspot.com",
+    };
+ firebase.initializeApp(config);
 
-firebase.initializeApp(config);
 
 // Establish easy access to db object
 var db = firebase.database();
