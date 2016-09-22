@@ -54,6 +54,24 @@
         </div>
     </div><!-- /.eventModal -->
 
+     <!-- Modal for user already logged in -->
+     <div class="modal fade authedModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h3 class="modal-title"> eventi </h3>
+                </div>
+                <div class="modal-body text-center">
+                    <h3> Welcome Back! </h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Close </button>
+                </div>
+             </div>
+        </div>
+    </div><!-- /.alertModal -->
+
     <!-- Modal for event information -->
     <div class="modal fade eventModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -269,6 +287,10 @@ var user;
 var userImg;
 var userName;
 var userEmail;
+
+if (uidUser) {
+    $('.authedModal').modal("show");
+}
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
