@@ -290,7 +290,7 @@ var userEmail;
 
 if (uidUser) {
     $('.authedModal').modal("show");
-}
+};
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
@@ -334,7 +334,6 @@ $(document).on("click", ".facebook", function() {
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser) {
-        alert("THANKS FOR LOGGING IN. LOSER")
         console.log(firebaseUser);
         uidUser = firebase.auth().currentUser.uid;
         currentUserProfile = firebase.auth().currentUser;
@@ -349,7 +348,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             console.log(currentUserProfile.displayName);
             $("#name").html(currentUserProfile.displayName);
             console.log(currentUserProfile.photoURL);
-            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
+            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='.img-responsive'" +'>')
             console.log(currentUserProfile.email)
         } else {
             currentUserRef.update({
