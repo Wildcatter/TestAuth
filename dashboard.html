@@ -1,10 +1,16 @@
+<!--
+ - Program: dashboard.html
+ - Created: 09/08/2016 by Saray Reyes, Garett Francis, Matt Holland
+ - Located: fileLocation/dashboard.html
+ - Purpose: Provide display dashboard template structure for group project #1 - Event searcher
+-->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../../favicon.ico">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
     <title> eventi </title>
 
     <!-- Latest Bootstrap compiled and minified CSS -->
@@ -13,16 +19,42 @@
     <!-- Dashboard styles for this template -->
     <link href="assets/css/dashboard.css" rel="stylesheet">
 
+    <!-- jQuery UI styling, locally hosted -->
+    <link rel="stylesheet" href="assets/vendor/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/vendor/jquery-ui/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="assets/vendor/jquery-ui/jquery-ui.theme.css">
+
     <!-- Custom styles for project -->
     <link rel="stylesheet" type="text/css" href="assets/css/dash-main-template.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/spinner.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100|Josefin+Slab:100|Quicksand:300|Raleway:100|Yanone+Kaffeesatz:200" rel="stylesheet"></head>
 </head>
 
 <body>
+    <!-- Spinner container -->
+    <div class="spinner-div"></div>
 
-    <!-- Modal for program alerts -->
+    <!-- Modal for login information -->
+    <div class="modal fade loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h3 class="modal-title"> event information </h3>
+                </div>
+                <div class="modal-body text-center">
+                     <a href="#" class="btn btn-default facebook"> <i class="fa fa-facebook modal-icons"></i> Sign In with Facebook </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Close </button>
+                </div>
+             </div>
+        </div>
+    </div><!-- /.eventModal -->
+
+    <!-- Modal for event information -->
     <div class="modal fade eventModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -40,8 +72,78 @@
                 </div>
              </div>
         </div>
-    </div><!-- /.modal -->
+    </div><!-- /.eventModal -->
 
+    <!-- Modal for program alerts -->
+     <div class="modal fade alertModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h3 class="modal-title"> eventi </h3>
+                </div>
+                <div class="modal-body text-center">
+                    <p id="modal-alert-msg"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Close </button>
+                </div>
+             </div>
+        </div>
+    </div><!-- /.alertModal -->
+
+    <!-- Modal for new event search -->
+     <div class="modal fade searchModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h3 class="modal-title"> search for events </h3>
+                </div>
+                <div class="modal-body">
+                    <!-- Note: this form is EXACTLY the same as the main home page form.  Typically, you would never duplicate this code, and you would generate it from one place on server-side code, from a class file,template file, etc--> 
+                    <div class="form-group">
+                        <!-- Wrap inside of col's to match padding & margin of side-by-side date fields -->
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <label> city </label>
+                            <input type="text" class="form-control" id="search-city">
+
+                            <label> category </label>
+                            <!-- Note: value == api id requirement for that category -->
+                            <select type="text" class="form-control" id="search-category">
+                                <option value="">all events</option>
+                                <option value="105" data-category="arts">arts</option>
+                                <option value="103" data-category="music">music</option>
+                                <option value="108" data-category="athletics">athletics</option>
+                                <option value="110" data-category="food & drink">food & drink</option>
+                                <option value="104" data-category="film & media">film & media</option>
+                                <option value="102" data-category="science & technology">science & technology</option>
+                            </select>
+                        </div>
+                        <!-- Note: date fields are side-by-side -->
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label> start date </label>
+                            <input type="text" class="form-control" id="search-date-start">
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <label> end date </label>
+                            <input type="text" class="form-control" id="search-date-end">
+                        </div>
+                        <!--
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <p class="text-center search-submit" id="search-submit"> eventinate </p>
+                        </div>-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" id="modal-search-submit" data-dismiss="modal"> eventinate </button>
+                </div>
+             </div>
+        </div>
+    </div><!-- /.searchModal -->
+
+    <!-- main navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <!-- Main nav area for mobile display -->
@@ -57,13 +159,8 @@
             <!-- Main program nav display -->
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="navbar-form navbar-right">
-                    <span id="name"></span> <span id="pic" height="35px" width="30px"></span>
-                    <!-- <button class="btn"> find events </button> -->
-                    <!-- <label> sign up </label> -->
-                    <!-- Input field for new topic button generation -->
-                   <!--  <input type="text" class="form-control input-generate player-join-input" placeholder="enter your email..."> -->
-                    <!-- Search icon, registers click for new topic button generation, or via onkeyup Enter kay -->
-                   <!--  <span class="glyphicon glyphicon-plus form-control-feedback plus-icon" aria-hidden="true"></span> -->
+                    <button class="btn" id="find-events-btn"> find events </button>
+                    <button class= "btn" id="login"> login </button>
                 </div>
             </div>
         </div>
@@ -77,43 +174,61 @@
                     <li><a href="#" class="sidebar-heading"></a></li>
                     <!-- div container for main dashboard functionality -->
                     <div id="dashboard-content">
+                        <!-- Slide Reveal side Bar Button -->
+                        <button class="btn" id='trigger'>my favorites</button>
+    
+                        <li>
+                            <button type="button" class="click-option" data-id="" data-category="all events">all events</button>
+                        </li>
+    
+                        <li>
+                            <button type="button" class="click-option" data-id="105" data-category="Arts">arts</button>
+                        </li>
+    
+                        <li>
+                            <button type="button" class="click-option" data-id="103" data-category="music">music</button>
+                        </li>
+    
+                        <li>
+                            <button type="button" class="click-option" data-id="108" data-category="Sports & Fitness">athletics</button>
+                        </li>
+    
+                        <li>
+                            <button type="button" class="click-option" data-id="110" data-category="Food & Drink">food & drink</button>
+                        </li>
+    
+                        <li>
+                            <button type="button" class="click-option" data-id="104" data-category="Film & Media">film & media</button>
+                        </li>
 
-                      <li>
-                        <button type="button" class="click-option" data-id="" data-categories="all events">all events</button>
-                      </li>
-                      <li>
-                        <button type="button" class="click-option" data-id="105" data-categories="Arts">arts</button>
-                      </li>
-                      <li>
-                        <button type="button" class="click-option" data-id="103" data-categories="music">music</button>
-                      </li>
-                      <li>
-                        <button type="button" class="click-option" data-id="108" data-categories="Sports & Fitness">athletics</button>
-                      </li>
-                      <li>
-                        <button type="button" class="click-option" data-id="110" data-categories="Food & Drink">food & drink</button>
-                      </li>
-                      <li>
-                        <button type="button" class="click-option" data-id="104" data-categories="Film & Media">film & media</button>
-                      </li>
-                      <li>
-                        <button type="button" class="click-option" data-id="102" data-categories="Science & Tech">science & tech</button>
-                      </li>
+                        <li>
+                            <button type="button" class="click-option" data-id="102" data-category="Science & Tech">science & tech</button>
+                        </li>
+
+                        <li>
+                            <input type="text" class="form-control location-input" placeholder="Enter a city to set location">
+                            <span class="glyphicon glyphicon-share-alt location-icon"></span>
+                            <p class="location-input-feedback"></p>
+                        </li>
                     </div>
                 </ul>
             </div>
+
             <!-- Main app content container -->
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-              <!-- Slide Reveal side Bar -->
-              <div class="slide-reveal">
-                <div id='slider'><h1>my favorites</h1></div>
-                <button class="btn" id='trigger'>my favorites</button>
-              </div>
-
-                <h1 class="page-header"><span class="header-span"></span></h1>
+                <!-- Slide Reveal side Bar -->
+                <div class="slide-reveal">
+                    <div id='slider'><h1>my favorites</h1></div>
+                </div>
+                <!-- Section for main page content heading -->
+                <div class="row page-header">
+                    <div class="col-sm-12 col-md-12">
+                        <!-- Note: span.header-span is only used for inserting dynamic text content -->
+                        <h1 class="main-heading"><span class="header-span"></span></h1>
+                    </div>
+                </div>
                 <!-- Holds the event boxes -->
-                <div class="event-boxes"></div>
+                <div class="event-boxes card"></div>
             </div> <!-- /.main -->
         </div> <!-- /.row -->
     </div> <!-- /.container-fluid -->
@@ -124,48 +239,103 @@
     <!-- Latest compiled and minified Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <!-- jQuery UI script for datepicker etc. , locally hosted -->
+    <script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+
     <!-- Moment JS library for date formatting etc -->
-   <!--  <script src="assets/vendor/moment-js/moment.js"></script> -->
+    <script src="assets/vendor/moment-js/moment.js"></script>
 
     <!-- Firebase Script Link -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <!-- Slide Reveal side Bar -->
+    <script src="assets/vendor/jquery-slidereveal/jquery.slidereveal.min.js"></script>
 
     <!-- Custom script for main program functionality -->
     <script src="assets/js/app.js"></script>
 
     <!-- Slide Reveal side Bar -->
-   <!--  <script src="http://code.jquery.com/jquery-[latest].min.js"></script> -->
-    <!-- <script src="assets/vendor/jquery-slidereveal/jquery.slidereveal.min.js"></script> -->
-
+    <script src="assets/vendor/jquery-slidereveal/jquery.slidereveal.min.js"></script>
 <script>
+
+var database = firebase.database();
+const auth = firebase.auth();
+var provider = new firebase.auth.FacebookAuthProvider();
+var googprovider = new firebase.auth.GoogleAuthProvider();
 var uidUser;
 var currentUserRef;
-var stuff;
-var currentUserProfile;
+var user;
+var userImg;
+var userName;
+var userEmail;
 
-window.onload = function() {
-    setTimeout(function () {
-            if (firebase.auth().currentUser) {
-                console.log("HAYYY");
-                currentUserProfile = firebase.auth().currentUser;
-                uidUser = firebase.auth().currentUser.uid;
-                console.log(uidUser);
-                currentUserRef = firebase.database().ref('Users/'+uidUser);
-                console.log(currentUserProfile.displayName);
-                $("#name").html(currentUserProfile.displayName);
-                console.log(currentUserProfile.photoURL);
-                $("#pic").html('<img src='+currentUserProfile.photoURL+ "class='img-responsive'" +'>')
-                console.log(currentUserProfile.email)
-                currentUserRef.update({
-                    fave1: {
-                        "MYFAVEST": "HAY"
-                    }
-                });
-            } else {
-                console.log("NOPEEE");
-            }
-    }, 1000);
-};
+firebase.auth().getRedirectResult().then(function(result) {
+  if (result.credential) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    console.log(token);
+    console.log(result)
+    // ...
+  }
+  // The signed-in user info.
+  user = result.user;
+
+  console.log(user.displayName);
+  userName = user.displayName;
+
+  console.log(user.email);
+  userEmail = user.email;
+
+  console.log(user.photoURL);
+  userImg = user.photoURL;
+
+
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
+
+$(document).on("click", "#login", function() {
+    $('.loginModal').modal("show");
+});
+
+$(document).on("click", ".facebook", function() {
+    firebase.auth().signInWithRedirect(provider);
+});
+
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    if(firebaseUser) {
+        alert("THANKS FOR LOGGING IN. LOSER")
+        console.log(firebaseUser);
+        uidUser = firebase.auth().currentUser.uid;
+        (console.log(uidUser));
+        currentUserRef = database.ref('Users/'+uidUser);
+        if (firebase.auth().currentUser.displayName) {
+            currentUserRef.update({
+                name: userName,
+                email: userEmail,
+                photo: userImg,
+            });
+        } else {
+            currentUserRef.update({
+                name: firebase.auth().currentUser.email,
+                email: firebase.auth().currentUser.email,
+            });
+        };
+        console.log(currentUserRef);
+        setTimeout(function () {
+            window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
+        }, 1000);
+    } else {
+        console.log("not logged in");
+    }
+});
 </script>
 </body>
 </html>

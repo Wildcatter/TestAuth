@@ -1,0 +1,45 @@
+*Group Project API
+
+* Main Purpose:
+	Search for events by city, date, and event type
+
+* API's to use
+	-Eventful
+	-Google maps
+	-Eventbrite
+	-Google calendar
+
+* Main Functionality
+	1) Search for events by city, date and event type
+	2) API will display events to user, along with options to save events to their custom lists
+	3) Users create their own groups of saved event content
+	4) Users can email events to themselves from the API
+	5) User can download event listings
+
+Events
+
+	-API's : Eventful, Songkick, Google maps, Google calendar, evently, eventbrite
+
+	-Dasboard layout
+
+	-Dark background, bright colors, easy on they eyes
+
+	-
+
+Functions:
+	Search a city
+	Calendar days (between dates etc)
+	Category (Music, Art, Plays, Festivals, Sports, Conventions etc)
+
+
+Main parts
+	-Search form
+	-Table for displaying results
+
+New API
+	-Stormpath?
+
+
+Use some JS Underscore?
+
+

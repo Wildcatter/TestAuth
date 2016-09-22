@@ -1,0 +1,25 @@
+* Group Project API
+
+* Members
+	Sarah Reyes
+	Garett Francis
+	Matt Holland
+
+* Main Purpose:
+	Search for events by city, date, and event type
+
+* API's to use
+	-Eventful
+	-Google maps
+	-Eventbrite
+	-Google calendar
+
+* Main Functionality
+	1) Search for events by city, date and event type
+	2) API will display events to user, along with options to save events to their custom lists
+	3) Users create their own groups of saved event content
+	4) Users can email events to themselves from the API
+	5) User can download event listings
+
+* New tool
+	-User authentication

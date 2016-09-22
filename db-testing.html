@@ -1,0 +1,84 @@
+<!-- Test file for firebase database retrieval -->
+<!doctype html>
+
+<html>
+	<head>
+		<style>
+
+			body {
+				background-color: #2f4050;
+				color: #fff;
+				font-weight: 200;
+			}
+
+			h1 {
+				color: #9d9d9d;
+			}
+
+			h2 {
+				color: #9d9d9d;
+			}
+
+			pre {
+				color: #4aaaaa;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<h1> Database Testing </h1>
+		<br>
+
+		<h2> Print out all user rows in db: </h2>
+<pre>
+ref.on('child_added', function(snapshot) {
+  var content = "User key: " + snapshot.key + " User name: " + snapshot.val().name + " User email: " + 
+  snapshot.val().email + " User favCategories: " + snapshot.val().favCategories;
+  $('.drunk-ass-div').append(content);
+});
+
+</pre>
+		<div class="drunk-ass-div"></div>
+		<br>
+
+		<h2> Print out only the first two users' information: </h2>
+<pre>
+ref.limitToFirst(2).on('child_added', function(snapshot) {
+  var content = "User key: " + snapshot.key + " User name: " + snapshot.val().name + " User email: " + 
+  snapshot.val().email + " User favCategories: " + snapshot.val().favCategories;
+  $('.first-user').append(content);
+});
+
+</pre>
+		<div class="first-user"></div>
+		<br>
+
+		<h2> Print out all personal favorite titles for userId 757827487: </h2>
+
+<pre>
+usersRef.child('757827487').child("favCategories").on('child_added', function(snapshot) { 
+  var content = "<p>";
+  var faveCat = snapshot.key + ":<br>";
+  var event = "";
+  snapshot.val().forEach(function(item, index, arr) {
+    event += "<span> Description: " + item.desc + "</span>";
+  });
+  content += faveCat + event + "</p>";
+  $('.faves').append(content);
+});
+</pre>
+
+		<div class="faves"></div>
+		<br>
+
+		<!-- jQuery library (necessary for Bootstrap & other JavaScript plugins) -->
+   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+   		<!-- Firebase database link -->
+   		<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+		<!-- Custom js application code -->
+		<script src="assets/js/db-testing.js"></script>
+	</body>
+</html>

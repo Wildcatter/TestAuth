@@ -144,18 +144,11 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 		uidUser = firebase.auth().currentUser.uid;
 		(console.log(uidUser));
 		currentUserRef = database.ref('Users/'+uidUser);
-		if (firebase.auth().currentUser.displayName) {
-			currentUserRef.update({
-				name: userName,
-				email: userEmail,
-				photo: userImg,
-			});
-		} else {
-			currentUserRef.update({
-				name: firebase.auth().currentUser.email,
-				email: firebase.auth().currentUser.email,
-			});
-		};
+		currentUserRef.update({
+			name: userName,
+			email: userEmail,
+			photo: userImg,
+		});
 		console.log(currentUserRef);
 		setTimeout(function () {
 			window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";

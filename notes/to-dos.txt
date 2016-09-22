@@ -1,0 +1,68 @@
+1) What happens after the user submits the event search form on the main homepage?
+	Transition (load) the dashboard page
+	a) save array of search results as localStorage??
+	b) save search results in the db, and then extract
+	Matt
+
+2) What to do if user is not logged in and clicks "Add to Favorites"
+	-Modal drops down and says "You need to log in first!"
+	-use Firebase user variable
+	Matt
+
+3) Where to put the "View Favorites" slideout button link
+	-Possibly over on the side content
+	Saray
+
+4) Where to put the "Welcome, Garett" message
+	-Garett's login pic etc at the top right (from the authentication stuff)
+	Garett
+
+5) How to deal with adding favorites
+	1) The info to submit along with the favorite
+	2) Dropdown for existing categories, so user can add to existing
+	3) "Add new Category" dropdown selection
+	Saray
+	We will use a dropdown 
+	(user bootstrap)
+
+6) Database structure (see example structure)
+	-What happens when user signs up?  How add to database works
+	Garett
+
+7) Where to put the login form link on the main page
+	-Top right, with "sign up" and yellow "+" symbol
+	-When the user clicks this, dropdown content contains login form
+	Do a dropdown
+
+
+8) Put search feedback in heading area of dashboard page
+	Matt
+
+9) Homepage:
+	1) user submits the search form
+		Matt
+	2) user just clicks the login link
+		-after they are authenticated, Garett-style, then redirect to dashboard page
+		- a) have default events, OR
+		- b) no events at all, "Welcome to your event page"
+		Garett
+
+	3) Dashboard page facebook content
+	Garett
+
+10) The search form on dashbaord page will be a modal with same inputs as main homescreen form
+
+11) Manage favorites section
+	
+	Note:  maybe just put this functionality inside of the favorites slider (like delete and edit icon)
+
+	-here they can:
+		1) Add categories to their account
+		2) Change existing category names
+		3) Delete categories
+	-Back Burner
+
+*Matt stuff done:
+	-finished with main page search submit -> populate results on dashboard page & populate search feedback heading
+	-new search modal on dashboard page - create form, grab inputs, create new search results & populate feedback heading
+	-new alert modal on dashboard page - for alerts etc (like alert for "You have to log in first!")

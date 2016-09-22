@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid main">
+			<div id="test">
+			</div>
+		 </div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+
+	<script>
+  // Initialize Firebase
+  	var config = {
+    apiKey: "AIzaSyDaPvYALiV1qQwyDxIrIfkwCUerTu_uSiA",
+    authDomain: "firstproject-b5d04.firebaseapp.com",
+    databaseURL: "https://firstproject-b5d04.firebaseio.com",
+    storageBucket: "firstproject-b5d04.appspot.com",
+  	};
+  	firebase.initializeApp(config);
+	</script>
+
+<script>
+var url = "https://www.eventbriteapi.com/v3/events/search/?token=IVKXSGGHO6MZSHMF5QZZ&location.address=austin&location.within=10mi";
+
+$.ajax({
+	url: url,
+	method: "GET",
+	}).done(function(response) {
+	console.log(response);
+	console.log(response.events[1].description.text);
+	$("#test").html(response.events[3].description.text)
+	console.log(response.events[1].end.local)
+	$("#test").append(response.events[3].end.local)
+	console.log(response.events[1].name.text)
+	$("#test").prepend(response.events[3].name.text)
+	console.log(response.events[1].start.local)
+	$("#test").append(response.events[3].start.local)
+
+	response.events.forEach (function(item, index, arr) {
+		let stuff = '<div id=' + index + '>';
+		var sliced;
+		if (item.description.text != null) {
+			sliced = item.description.text.slice(0, 100);
+		} else {
+			sliced = "No description";
+		}
+		
+		//$(".divs").append(stuff);	
+		$("#" + index).addClass("yo");	
+		//$("#" + index).html(item.name.text);
+		$("#" + index).append(sliced);
+		let html = '<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">' +
+                  '<div class="panel event-content text-center">' +
+                    	'<h3>' + item.name.text + '</h3>' +
+                    	'<p>' + sliced + '</p>' +
+                    	'<button type="button" class="btn btn-primary btn-lg btn-block">Add Favorite</button>' +
+                  '</div>' +
+        		  '</div>';
+        $(".main").append(html);
+	});
+});
+
+
+// q = events with keyword
+// start_date.range_start
+// start_date.range_end
+//location.address
+// location.within
+// categories
+//response.events[i].description.text
+//response.events[i].end.local
+// "".name.text
+// "" start.local
+// "" 
+
+
+
+</script>
+</body>
+</html>
