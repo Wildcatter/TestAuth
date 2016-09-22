@@ -161,6 +161,7 @@
                 <div class="navbar-form navbar-right">
                     <button class="btn" id="find-events-btn"> find events </button>
                     <button class= "btn" id="login"> login </button>
+                     <span id="name"></span> <span id="pic" height="35px" width="30px"></span>
                 </div>
             </div>
         </div>
@@ -322,12 +323,22 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
                 email: userEmail,
                 photo: userImg,
             });
+            console.log(currentUserProfile.displayName);
+            $("#name").html(currentUserProfile.displayName);
+            console.log(currentUserProfile.photoURL);
+            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
+            console.log(currentUserProfile.email)
         } else {
             currentUserRef.update({
                 name: firebase.auth().currentUser.email,
                 email: firebase.auth().currentUser.email,
             });
         };
+        currentUserRef.update({
+            favorites: {
+                "Initialize": "AUTHED"
+            }
+         });
         console.log(currentUserRef);
         setTimeout(function () {
             window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
