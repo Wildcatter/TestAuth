@@ -161,7 +161,7 @@
                 <div class="navbar-form navbar-right">
                     <button class="btn" id="find-events-btn"> find events </button>
                     <button class= "btn" id="login"> login </button>
-                     <span id="name"></span> <span id="pic" height="35px" width="30px"></span>
+                    <span id="name"></span> <span id="pic" height="35px" width="30px"></span>
                 </div>
             </div>
         </div>
@@ -315,6 +315,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         alert("THANKS FOR LOGGING IN. LOSER")
         console.log(firebaseUser);
         uidUser = firebase.auth().currentUser.uid;
+        currentUserProfile = firebase.auth().currentUser;
         (console.log(uidUser));
         currentUserRef = database.ref('Users/'+uidUser);
         if (firebase.auth().currentUser.displayName) {
