@@ -283,37 +283,30 @@ var provider = new firebase.auth.FacebookAuthProvider();
 var googprovider = new firebase.auth.GoogleAuthProvider();
 var uidUser;
 var currentUserRef;
-var user;
+// var user;
 var userImg;
 var userName;
 var userEmail;
 
-if (uidUser) {
-    $('.authedModal').modal("show");
-};
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var token = result.credential.accessToken;
     console.log(token);
-    console.log(result)
+    console.log(result);
+    let user = result.user;
+    let console.log(user.displayName);
+    userName = user.displayName;
+    let userEmail = user.email;
+    console.log(user.email);
+    console.log(user.photoURL);
+    let userImg = user.photoUrl;
     // ...
-  }
+  };
   // The signed-in user info.
-  user = result.user;
-
-  console.log(user.displayName);
-  userName = user.displayName;
-
-  console.log(user.email);
-  userEmail = user.email;
-
-  console.log(user.photoURL);
-  userImg = user.photoURL;
-
-
-}).catch(function(error) {
+  
+  }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -348,7 +341,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             console.log(currentUserProfile.displayName);
             $("#name").html(currentUserProfile.displayName);
             console.log(currentUserProfile.photoURL);
-            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='.img-responsive'" +'>')
+            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
             console.log(currentUserProfile.email)
         } else {
             currentUserRef.update({
@@ -362,10 +355,15 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             }
          });
         console.log(currentUserRef);
+        $('.authedModal').modal("show");
     } else {
         console.log("not logged in");
     }
 });
+
+if (uidUser) {
+    $('.authedModal').modal("show");
+};
 </script>
 </body>
 </html>
