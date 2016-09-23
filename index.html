@@ -203,9 +203,19 @@ firebase.auth().getRedirectResult().then(function(result) {
          window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
     }, 2000);
   };
+  }).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
 
 
-  $(document).on("click", "#login", function() {
+ $(document).on("click", "#login", function() {
     $('.loginModal').modal("show");
 });
 </script>

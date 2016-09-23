@@ -318,6 +318,7 @@ var previousUser = false;
 
 firebase.auth().onAuthStateChanged(function(user) {   
      if(user) {
+        $("#login").remove();
         currentUserProfile = firebase.auth().currentUser;
         uidUser = firebase.auth().currentUser.uid;
         currentUserRef = database.ref('Users/'+uidUser);
