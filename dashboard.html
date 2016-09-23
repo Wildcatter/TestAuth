@@ -29,7 +29,12 @@
     <link rel="stylesheet" type="text/css" href="assets/css/spinner.css">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100|Josefin+Slab:100|Quicksand:300|Raleway:100|Yanone+Kaffeesatz:200" rel="stylesheet"></head>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100|Josefin+Slab:100|Quicksand:300|Raleway:100|Yanone+Kaffeesatz:200" rel="stylesheet">
+
+<style>
+    #pic {box-sizing:border-box;}
+</style>
+
 </head>
 
 <body>
@@ -64,6 +69,24 @@
                 </div>
                 <div class="modal-body text-center">
                     <h3> Welcome Back! </h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Close </button>
+                </div>
+             </div>
+        </div>
+    </div><!-- /.alertModal -->
+
+    <!-- Modal for user already logged in -->
+     <div class="modal fade loggedModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h3 class="modal-title"> eventi </h3>
+                </div>
+                <div class="modal-body text-center">
+                    <h3> Thanks for logging in! </h3>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal"> Close </button>
@@ -290,20 +313,26 @@ var userName;
 var userEmail;
 var userImg;
 var authed = firebase.auth().currentUser;
+var justRegistered = true;
 
 
 firebase.auth().onAuthStateChanged(function(user) {   
-     if(user) {        
-         setTimeout(function () {
-             currentUserProfile = firebase.auth().currentUser;
-             uidUser = firebase.auth().currentUser.uid;
-             currentUserRef = database.ref('Users/'+uidUser);
-             (console.log(uidUser));
-            $('.authedModal').modal("show");
+     if(user) {
+        currentUserProfile = firebase.auth().currentUser;
+        uidUser = firebase.auth().currentUser.uid;
+        currentUserRef = database.ref('Users/'+uidUser);
+        (console.log(uidUser));
+        console.log(currentUserProfile.displayName);
+        $("#name").html(currentUserProfile.displayName);
+        console.log(currentUserProfile.photoURL);
+        $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
+        console.log(currentUserProfile.email)        
+        setTimeout(function () {
+             $('.authedModal').modal("show");
         }, 1000);
     } else {
             console.log("u aint logged in :)");
-        }
+      }
  });
 
 firebase.auth().getRedirectResult().then(function(result) {
@@ -320,21 +349,15 @@ firebase.auth().getRedirectResult().then(function(result) {
     console.log(user.photoURL);
     userImg = user.photoURL;
     currentUserProfile = firebase.auth().currentUser;
-         uidUser = firebase.auth().currentUser.uid;
+        uidUser = firebase.auth().currentUser.uid;
         (console.log(uidUser));
         currentUserRef = database.ref('Users/'+uidUser);
-         currentUserRef.update({
+        currentUserRef.update({
              name: userName,
              email: userEmail,
              photo: userImg,
              });
-        console.log(currentUserProfile.displayName);
-         $("#name").html(currentUserProfile.displayName);
-        console.log(currentUserProfile.photoURL);
-         $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
-        console.log(currentUserProfile.email)
-            // ...
-         alert("Thanks for logging in :) :) :)");
+        alert("Thanks for logging in :) :) :)");
   };
   // The signed-in user info.
   
