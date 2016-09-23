@@ -277,6 +277,7 @@
     <script src="assets/vendor/jquery-slidereveal/jquery.slidereveal.min.js"></script>
 <script>
 
+
 var database = firebase.database();
 const auth = firebase.auth();
 var provider = new firebase.auth.FacebookAuthProvider();
@@ -300,26 +301,28 @@ var userImg;
 // };
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
-    if(firebaseUser) {
-        currentUserProfile = firebase.auth().currentUser;
-        uidUser = firebase.auth().currentUser.uid;
-        (console.log(uidUser));
-        currentUserRef = database.ref('Users/'+uidUser);
-        currentUserRef.update({
-                name: userName,
-                email: userEmail,
-                photo: userImg,
-            });
-        console.log(currentUserProfile.displayName);
-        $("#name").html(currentUserProfile.displayName);
-        console.log(currentUserProfile.photoURL);
-        $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
-        console.log(currentUserProfile.email)
-    // ...
-        alert("Thanks for logging in :) :) :)");
-    } else {
-        console.log("not logged in");
-    };
+    setTimeout(function () {
+        if(firebaseUser) {
+            currentUserProfile = firebase.auth().currentUser;
+            uidUser = firebase.auth().currentUser.uid;
+            (console.log(uidUser));
+            currentUserRef = database.ref('Users/'+uidUser);
+            currentUserRef.update({
+                    name: userName,
+                    email: userEmail,
+                    photo: userImg,
+                });
+            console.log(currentUserProfile.displayName);
+            $("#name").html(currentUserProfile.displayName);
+            console.log(currentUserProfile.photoURL);
+            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
+            console.log(currentUserProfile.email)
+        // ...
+            alert("Thanks for logging in :) :) :)");
+        } else {
+            console.log("not logged in");
+        };
+    }, 1000);
 });
 
 firebase.auth().getRedirectResult().then(function(result) {
