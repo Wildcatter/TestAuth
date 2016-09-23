@@ -291,15 +291,16 @@ var userEmail;
 var userImg;
 var authed = firebase.auth().currentUser;
 
-setTimeout(function () {
+
     firebase.auth().onAuthStateChanged(function(user) {
-     if(user) {
-         currentUserProfile = firebase.auth().currentUser;
-         console.log(firebaseUser);
-         uidUser = firebase.auth().currentUser.uid;
-         currentUserRef = database.ref('Users/'+uidUser);
-         (console.log(uidUser));
-        $('.authedModal').modal("show");
+    setTimeout(function () {
+     if(user) {        
+             currentUserProfile = firebase.auth().currentUser;
+             console.log(firebaseUser);
+             uidUser = firebase.auth().currentUser.uid;
+             currentUserRef = database.ref('Users/'+uidUser);
+             (console.log(uidUser));
+            $('.authedModal').modal("show");
         } else {
             console.log("u aint logged in :)");
         }
