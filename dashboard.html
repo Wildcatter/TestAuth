@@ -296,12 +296,11 @@ firebase.auth().onAuthStateChanged(function(user) {
      if(user) {        
          setTimeout(function () {
              currentUserProfile = firebase.auth().currentUser;
-             console.log(firebaseUser);
              uidUser = firebase.auth().currentUser.uid;
              currentUserRef = database.ref('Users/'+uidUser);
              (console.log(uidUser));
             $('.authedModal').modal("show");
-        }, 3000);
+        }, 1000);
     } else {
             console.log("u aint logged in :)");
         }
