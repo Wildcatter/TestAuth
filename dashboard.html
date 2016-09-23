@@ -296,7 +296,7 @@ firebase.auth().getRedirectResult().then(function(result) {
     console.log(token);
     console.log(result);
     let user = result.user;
-    let console.log(user.displayName);
+    console.log(user.displayName);
     userName = user.displayName;
     let userEmail = user.email;
     console.log(user.email);
@@ -325,41 +325,41 @@ $(document).on("click", ".facebook", function() {
     firebase.auth().signInWithRedirect(provider);
 });
 
-firebase.auth().onAuthStateChanged(firebaseUser => {
-    if(firebaseUser) {
-        console.log(firebaseUser);
-        uidUser = firebase.auth().currentUser.uid;
-        currentUserProfile = firebase.auth().currentUser;
-        (console.log(uidUser));
-        currentUserRef = database.ref('Users/'+uidUser);
-        if (firebase.auth().currentUser.displayName) {
-            currentUserRef.update({
-                name: userName,
-                email: userEmail,
-                photo: userImg,
-            });
-            console.log(currentUserProfile.displayName);
-            $("#name").html(currentUserProfile.displayName);
-            console.log(currentUserProfile.photoURL);
-            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
-            console.log(currentUserProfile.email)
-        } else {
-            currentUserRef.update({
-                name: firebase.auth().currentUser.email,
-                email: firebase.auth().currentUser.email,
-            });
-        };
-        currentUserRef.update({
-            favorites: {
-                "Initialize": "AUTHED"
-            }
-         });
-        console.log(currentUserRef);
-        $('.authedModal').modal("show");
-    } else {
-        console.log("not logged in");
-    }
-});
+// firebase.auth().onAuthStateChanged(firebaseUser => {
+//     if(firebaseUser) {
+//         console.log(firebaseUser);
+//         uidUser = firebase.auth().currentUser.uid;
+//         currentUserProfile = firebase.auth().currentUser;
+//         (console.log(uidUser));
+//         currentUserRef = database.ref('Users/'+uidUser);
+//         if (firebase.auth().currentUser.displayName) {
+//             currentUserRef.update({
+//                 name: userName,
+//                 email: userEmail,
+//                 photo: userImg,
+//             });
+//             console.log(currentUserProfile.displayName);
+//             $("#name").html(currentUserProfile.displayName);
+//             console.log(currentUserProfile.photoURL);
+//             $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
+//             console.log(currentUserProfile.email)
+//         } else {
+//             currentUserRef.update({
+//                 name: firebase.auth().currentUser.email,
+//                 email: firebase.auth().currentUser.email,
+//             });
+//         };
+//         currentUserRef.update({
+//             favorites: {
+//                 "Initialize": "AUTHED"
+//             }
+//          });
+//         console.log(currentUserRef);
+//         $('.authedModal').modal("show");
+//     } else {
+//         console.log("not logged in");
+//     }
+// });
 
 if (uidUser) {
     $('.authedModal').modal("show");
