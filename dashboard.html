@@ -291,7 +291,7 @@ var userEmail;
 var userImg;
 
 
-if (firebase.auth().currentUser.uid) {
+if (firebase.auth().currentUser) {
      currentUserProfile = firebase.auth().currentUser;
      console.log(firebaseUser);
      uidUser = firebase.auth().currentUser.uid;
