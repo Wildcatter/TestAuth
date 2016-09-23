@@ -346,8 +346,7 @@ $(document).on("click", ".facebook", function() {
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser) {
         $('.authedModal').modal("show");
-    };
-     else {
+    } else {
         console.log("not logged in");
     };
 });
