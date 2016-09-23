@@ -33,6 +33,24 @@
 		<!-- Spinner container -->
     	<div class="spinner-div"></div>
 
+    	<!-- Modal for login information -->
+    <div class="modal fade loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h3 class="modal-title"> event information </h3>
+                </div>
+                <div class="modal-body text-center">
+                     <a href="#" class="btn btn-default facebook" id="facebook"> <i class="fa fa-facebook modal-icons"></i> Sign In with Facebook </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Close </button>
+                </div>
+             </div>
+        </div>
+    </div><!-- /.eventModal -->
+
     	<!-- Modal for program alerts -->
     	 <div class="modal fade alertModal" tabindex="-1" role="dialog">
     	    <div class="modal-dialog" role="document">
@@ -128,6 +146,50 @@
 		 // setTimeout(function () {
    //          window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
    //      }, 1000);
+var database = firebase.database();
+//const auth = firebase.auth();
+var provider = new firebase.auth.FacebookAuthProvider();
+var googprovider = new firebase.auth.GoogleAuthProvider();
+var uidUser;
+var currentUserProfile;
+var currentUserRef;
+var user;
+var userName;
+var userEmail;
+var userImg;
+
+firebase.auth().getRedirectResult().then(function(result) {
+  if (result.credential) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    console.log(token);
+    console.log(result);
+    user = result.user;
+    console.log(user.displayName);
+    userName = user.displayName;
+    userEmail = user.email;
+    console.log(user.email);
+    console.log(user.photoURL);
+    userImg = user.photoURL;
+    currentUserProfile = firebase.auth().currentUser;
+        uidUser = firebase.auth().currentUser.uid;
+        (console.log(uidUser));
+        currentUserRef = database.ref('Users/'+uidUser);
+        currentUserRef.update({
+             name: userName,
+             email: userEmail,
+             photo: userImg,
+             });
+    setTimeout(function () {
+         $('.loggedModal').modal("show");
+         window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
+    }, 2000);
+  };
+
+
+  $(document).on("click", "#login", function() {
+    $('.loginModal').modal("show");
+});
 </script>
 	</body>
 </html>

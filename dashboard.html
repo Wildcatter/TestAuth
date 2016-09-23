@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100|Josefin+Slab:100|Quicksand:300|Raleway:100|Yanone+Kaffeesatz:200" rel="stylesheet">
 
 <style>
-    #pic {box-sizing:border-box;}
+    #pic {box-sizing:border-box; height: 35px; width: 30px;}
 </style>
 
 </head>
@@ -201,7 +201,6 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="navbar-form navbar-right">
                     <button class="btn" id="find-events-btn"> find events </button>
-                    <button class= "btn" id="login"> login </button>
                     <span id="pic" height="35px" width="30px"></span> <span id="name"></span> 
                 </div>
             </div>
@@ -302,7 +301,7 @@
 
 
 var database = firebase.database();
-const auth = firebase.auth();
+//const auth = firebase.auth();
 var provider = new firebase.auth.FacebookAuthProvider();
 var googprovider = new firebase.auth.GoogleAuthProvider();
 var uidUser;
@@ -314,6 +313,7 @@ var userEmail;
 var userImg;
 var authed = firebase.auth().currentUser;
 var justRegistered = true;
+var previousUser = false;
 
 
 firebase.auth().onAuthStateChanged(function(user) {   
@@ -326,12 +326,14 @@ firebase.auth().onAuthStateChanged(function(user) {
         $("#name").html(currentUserProfile.displayName);
         console.log(currentUserProfile.photoURL);
         $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
-        console.log(currentUserProfile.email)        
-        setTimeout(function () {
-             $('.authedModal').modal("show");
-        }, 1000);
+        console.log(currentUserProfile.email)
     } else {
-            console.log("u aint logged in :)");
+        let loginCreate = $('<button>')
+        loginCreate.addClass('btn');
+        loginCreate.attr('id', 'login');//<button class= "btn" id="login"> login </button>
+        loginCreate.text('Login')
+        $(".navbar-right").append(loginCreate);
+        console.log("u aint logged in :)");
       }
  });
 
@@ -357,7 +359,9 @@ firebase.auth().getRedirectResult().then(function(result) {
              email: userEmail,
              photo: userImg,
              });
-        alert("Thanks for logging in :) :) :)");
+    setTimeout(function () {
+         $('.loggedModal').modal("show");
+    }, 2000);
   };
   // The signed-in user info.
   
