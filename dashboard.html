@@ -284,10 +284,15 @@ var googprovider = new firebase.auth.GoogleAuthProvider();
 var uidUser;
 var currentUserRef;
 // var user;
-var userImg;
-var userName;
-var userEmail;
 
+if (uidUser) {
+     currentUserProfile = firebase.auth().currentUser;
+     console.log(firebaseUser);
+     uidUser = firebase.auth().currentUser.uid;
+     currentUserRef = database.ref('Users/'+uidUser);
+     (console.log(uidUser));
+    $('.authedModal').modal("show");
+};
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
@@ -302,6 +307,19 @@ firebase.auth().getRedirectResult().then(function(result) {
     console.log(user.email);
     console.log(user.photoURL);
     let userImg = user.photoUrl;
+    uidUser = firebase.auth().currentUser.uid;
+    (console.log(uidUser));
+    currentUserRef = database.ref('Users/'+uidUser);
+    currentUserRef.update({
+                name: userName,
+                email: userEmail,
+                photo: userImg,
+            });
+            console.log(currentUserProfile.displayName);
+            $("#name").html(currentUserProfile.displayName);
+            console.log(currentUserProfile.photoURL);
+            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
+            console.log(currentUserProfile.email)
     // ...
   };
   // The signed-in user info.
@@ -327,43 +345,28 @@ $(document).on("click", ".facebook", function() {
 
 // firebase.auth().onAuthStateChanged(firebaseUser => {
 //     if(firebaseUser) {
-//         console.log(firebaseUser);
-//         uidUser = firebase.auth().currentUser.uid;
-//         currentUserProfile = firebase.auth().currentUser;
-//         (console.log(uidUser));
-//         currentUserRef = database.ref('Users/'+uidUser);
-//         if (firebase.auth().currentUser.displayName) {
-//             currentUserRef.update({
-//                 name: userName,
-//                 email: userEmail,
-//                 photo: userImg,
-//             });
-//             console.log(currentUserProfile.displayName);
-//             $("#name").html(currentUserProfile.displayName);
-//             console.log(currentUserProfile.photoURL);
-//             $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
-//             console.log(currentUserProfile.email)
-//         } else {
-//             currentUserRef.update({
-//                 name: firebase.auth().currentUser.email,
-//                 email: firebase.auth().currentUser.email,
-//             });
-//         };
+//        
+//        // // if (firebase.auth().currentUser.displayName) {
+            
+//        //  } else {
+//        //      currentUserRef.update({
+//        //          name: firebase.auth().currentUser.email,
+//        //          email: firebase.auth().currentUser.email,
+//        //      });
+//        //  };
 //         currentUserRef.update({
 //             favorites: {
 //                 "Initialize": "AUTHED"
 //             }
 //          });
-//         console.log(currentUserRef);
-//         $('.authedModal').modal("show");
+//  
+        $('.authedModal').modal("show");
 //     } else {
 //         console.log("not logged in");
 //     }
 // });
 
-if (uidUser) {
-    $('.authedModal').modal("show");
-};
+
 </script>
 </body>
 </html>
