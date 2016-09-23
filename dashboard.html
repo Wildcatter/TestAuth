@@ -291,39 +291,39 @@ var userEmail;
 var userImg;
 
 
-// if (uidUser) {
-//      currentUserProfile = firebase.auth().currentUser;
-//      console.log(firebaseUser);
-//      uidUser = firebase.auth().currentUser.uid;
-//      currentUserRef = database.ref('Users/'+uidUser);
-//      (console.log(uidUser));
-//     $('.authedModal').modal("show");
-// };
-
-firebase.auth().onAuthStateChanged(firebaseUser => {
-    setTimeout(function () {
-        if(firebaseUser) {
-            currentUserProfile = firebase.auth().currentUser;
-            uidUser = firebase.auth().currentUser.uid;
-            (console.log(uidUser));
-            currentUserRef = database.ref('Users/'+uidUser);
-            currentUserRef.update({
-                    name: userName,
-                    email: userEmail,
-                    photo: userImg,
-                });
-            console.log(currentUserProfile.displayName);
-            $("#name").html(currentUserProfile.displayName);
-            console.log(currentUserProfile.photoURL);
-            $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
-            console.log(currentUserProfile.email)
-        // ...
-            alert("Thanks for logging in :) :) :)");
-        } else {
-            console.log("not logged in");
-        };
-    }, 1000);
+if (uidUser) {
+     currentUserProfile = firebase.auth().currentUser;
+     console.log(firebaseUser);
+     uidUser = firebase.auth().currentUser.uid;
+     currentUserRef = database.ref('Users/'+uidUser);
+     (console.log(uidUser));
+    $('.authedModal').modal("show");
+} else {
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        setTimeout(function () {
+            if(firebaseUser) {
+                currentUserProfile = firebase.auth().currentUser;
+                uidUser = firebase.auth().currentUser.uid;
+                (console.log(uidUser));
+                currentUserRef = database.ref('Users/'+uidUser);
+                currentUserRef.update({
+                        name: userName,
+                        email: userEmail,
+                        photo: userImg,
+                    });
+                console.log(currentUserProfile.displayName);
+                $("#name").html(currentUserProfile.displayName);
+                console.log(currentUserProfile.photoURL);
+                $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
+                console.log(currentUserProfile.email)
+            // ...
+                alert("Thanks for logging in :) :) :)");
+            } else {
+                console.log("not logged in");
+            };
+        }, 1000);
 });
+};
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
