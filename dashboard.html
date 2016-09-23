@@ -343,8 +343,8 @@ $(document).on("click", ".facebook", function() {
     firebase.auth().signInWithRedirect(provider);
 });
 
-// firebase.auth().onAuthStateChanged(firebaseUser => {
-//     if(firebaseUser) {
+firebase.auth().onAuthStateChanged(firebaseUser => {
+    if(firebaseUser) {
 //        
 //        // // if (firebase.auth().currentUser.displayName) {
             
@@ -358,13 +358,13 @@ $(document).on("click", ".facebook", function() {
 //             favorites: {
 //                 "Initialize": "AUTHED"
 //             }
-//          });
+    };
 //  
-        $('.authedModal').modal("show");
-//     } else {
-//         console.log("not logged in");
-//     }
-// });
+        // $('.authedModal').modal("show");
+     else {
+        console.log("not logged in");
+    };
+});
 
 
 </script>
