@@ -345,6 +345,14 @@ $(document).on("click", ".facebook", function() {
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser) {
+        $('.authedModal').modal("show");
+    };
+     else {
+        console.log("not logged in");
+    };
+});
+
+
 //        
 //        // // if (firebase.auth().currentUser.displayName) {
             
@@ -358,14 +366,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 //             favorites: {
 //                 "Initialize": "AUTHED"
 //             }
-    };
-//  
-        // $('.authedModal').modal("show");
-     else {
-        console.log("not logged in");
-    };
-});
-
 
 </script>
 </body>
