@@ -33,6 +33,7 @@
 
 <style>
     #pic {box-sizing:border-box; height: 35px; width: 30px;}
+    .navButtons {display:inline-block}
 </style>
 
 </head>
@@ -200,7 +201,7 @@
             <!-- Main program nav display -->
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="navbar-form navbar-right">
-                    <button class="btn" id="find-events-btn"> find events </button>
+                    <button class="btn navButtons" id="find-events-btn"> find events </button>
                     <span id="pic" height="35px" width="30px"></span> <span id="name"></span> 
                 </div>
             </div>
@@ -326,11 +327,13 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log(currentUserProfile.displayName);
         $("#name").html(currentUserProfile.displayName);
         console.log(currentUserProfile.photoURL);
-        $("#pic").html('<img src='+currentUserProfile.photoURL+ " class='img-responsive'" +'>')
+        let pic = $('<img src='+currentUserProfile.photoURL+'>');
+        pic.addClass('img-responsive');
+        $("#pic").html(pic)
         console.log(currentUserProfile.email)
     } else {
         let loginCreate = $('<button>')
-        loginCreate.addClass('btn');
+        loginCreate.addClass('btn navButtons');
         loginCreate.attr('id', 'login');//<button class= "btn" id="login"> login </button>
         loginCreate.text('Login')
         $(".navbar-right").append(loginCreate);

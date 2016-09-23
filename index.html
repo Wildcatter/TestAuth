@@ -218,6 +218,10 @@ firebase.auth().getRedirectResult().then(function(result) {
  $(document).on("click", "#login", function() {
     $('.loginModal').modal("show");
 });
+
+$(document).on("click", "#facebook", function() {
+    firebase.auth().signInWithRedirect(provider);
+});
 </script>
 	</body>
 </html>
