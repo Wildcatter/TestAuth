@@ -300,7 +300,7 @@ if (uidUser) {
     $('.authedModal').modal("show");
 };
 
-    firebase.auth().onAuthStateChanged(firebaseUser => {
+setTimeout(function () { firebase.auth().onAuthStateChanged(firebaseUser => {
         // setTimeout(function () {
         //     if(firebaseUser) {
         //         currentUserProfile = firebase.auth().currentUser;
@@ -324,6 +324,7 @@ if (uidUser) {
         //     };
         // }, 1000);
         alert("Thanks for logging in :) :) :)");
+    }, 2000);
 });
 
 firebase.auth().getRedirectResult().then(function(result) {
