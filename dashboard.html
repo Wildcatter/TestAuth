@@ -292,20 +292,20 @@ var userImg;
 var authed = firebase.auth().currentUser;
 
 
-    firebase.auth().onAuthStateChanged(function(user) {
-    setTimeout(function () {
+firebase.auth().onAuthStateChanged(function(user) {   
      if(user) {        
+         setTimeout(function () {
              currentUserProfile = firebase.auth().currentUser;
              console.log(firebaseUser);
              uidUser = firebase.auth().currentUser.uid;
              currentUserRef = database.ref('Users/'+uidUser);
              (console.log(uidUser));
             $('.authedModal').modal("show");
-        } else {
+        }, 3000);
+    } else {
             console.log("u aint logged in :)");
         }
-     }, 3000);
-     });
+ });
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
