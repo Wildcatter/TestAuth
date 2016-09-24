@@ -22,8 +22,6 @@ var config = {
     };
  firebase.initializeApp(config);
 
-firebase.initializeApp(config);
-
 // Establish database global vars
 var database = firebase.database();
 const auth = firebase.auth();
