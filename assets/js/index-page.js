@@ -316,63 +316,72 @@ $(document).ready(function() {
   	$("#search-date-start").datepicker();
   	$("#search-date-end").datepicker();
 
-    // Show the modal if user clicks 'login'
-    $('.login-link').on('click', function() {
-        $('.loginModal').modal("show");
+    $(document).on("click", ".login-link", function() {
+    $('.loginModal').modal("show");
     });
 
-    // Process the authorization btn login/signup click
-    $(".loginModal button").on("click", function() {
+    $(document).on("click", "#fbook", function() {
+    firebase.auth().signInWithRedirect(provider);
+    });
 
-        // Get user's email and password
-        var email = $('#login-email').val();
-        var password = $('#login-pass').val();
+    // // Show the modal if user clicks 'login'
+    // $('.login-link').on('click', function() {
+    //     $('.loginModal').modal("show");
+    // });
 
-        // Establish error array for error messages in alertModal, and msg string
-        var errors = [];
-        var msg = "";
+    // // Process the authorization btn login/signup click
+    // $(".loginModal button").on("click", function() {
 
-        // // Validate the password
-        // if(password == "") {
-        //     errors.push("You must enter a valid password! \n");
+    //     // Get user's email and password
+    //     var email = $('#login-email').val();
+    //     var password = $('#login-pass').val();
+
+    //     // Establish error array for error messages in alertModal, and msg string
+    //     var errors = [];
+    //     var msg = "";
+
+    //     // // Validate the password
+    //     // if(password == "") {
+    //     //     errors.push("You must enter a valid password! \n");
+    //     // }
+
+    //     // // Validate the email address
+    //     // if(!validEmail.test(email)) {
+    //     //     errors.push("You must enter a valid email address!");
+    //     // }
+
+    //     // If there were any errors, generate error msg, show alertModal and cease user credential processing
+    //     if(errors.length > 0) {
+    //         errors.forEach(function(error) {
+    //             msg += error + "\n";
+    //         });
+    //         contentObj.showAlertModal(msg);
+    //         return false;
+    //     }
+
+    //     // Load the spinner to indicate processing
+    //     $('div.spinner-div').html('<div class="spinner">Loading...</div>');
+
+    //     // Run the ajaxCall() method, after timeDelay interval. The spinner is removed once the ajax call is complete.
+
+    //     // Capture the button clicked
+    //     var btn = $(this).attr("id");
+    //     console.log("btn: " + btn);
+
+  // Process user login credentials based on button clicked
+        // switch(btn) {
+        //     case "join":
+        //         auth.createUserWithEmailAndPassword(email, password);
+        //         break;
+        //     case "login":
+        //         auth.signInWithEmailAndPassword(email, password);
+        //         break;
+        //     case "fbook":
+        //         firebase.auth().signInWithRedirect(fbProvider);
+        //     case "googs":
+        //         firebase.auth().signInWithRedirect(googleProvider);
         // }
-
-        // // Validate the email address
-        // if(!validEmail.test(email)) {
-        //     errors.push("You must enter a valid email address!");
-        // }
-
-        // If there were any errors, generate error msg, show alertModal and cease user credential processing
-        if(errors.length > 0) {
-            errors.forEach(function(error) {
-                msg += error + "\n";
-            });
-            contentObj.showAlertModal(msg);
-            return false;
-        }
-
-        // Load the spinner to indicate processing
-        $('div.spinner-div').html('<div class="spinner">Loading...</div>');
-
-        // Run the ajaxCall() method, after timeDelay interval. The spinner is removed once the ajax call is complete.
-
-        // Capture the button clicked
-        var btn = $(this).attr("id");
-        console.log("btn: " + btn);
-
-        // Process user login credentials based on button clicked
-        switch(btn) {
-            case "join":
-                auth.createUserWithEmailAndPassword(email, password);
-                break;
-            case "login":
-                auth.signInWithEmailAndPassword(email, password);
-                break;
-            case "fbook":
-                firebase.auth().signInWithRedirect(fbProvider);
-            case "googs":
-                firebase.auth().signInWithRedirect(googleProvider);
-        }
+       
     });
 
     // Process search submit
