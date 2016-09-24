@@ -34,8 +34,6 @@ var userImg;
 var userName;
 var userEmail;
 
-database.ref().set("users");
-
 
 firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
