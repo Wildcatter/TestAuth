@@ -96,7 +96,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         };
         console.log("currentUserRef: " + currentUserRef);
         setTimeout(function () {
-            window.location = "file:///Users/Yo/Desktop/Bootcamp/homework/group-projects/Group-Event-Project1/dashboard.html";
+            window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
         }, 1000);
     } else {
         console.log("You are not logged in!");
@@ -214,7 +214,7 @@ var eventObj = {
             }
 
             // Redirect to dashboard page, now that search results have been returned
-            window.location="file:///Users/Yo/Desktop/Bootcamp/homework/group-projects/Group-Event-Project1/dashboard.html";
+            window.location="https://pacific-reef-34702.herokuapp.com/dashboard.html";
         });
     }, // ajaxCall()
 
@@ -384,7 +384,7 @@ $(document).ready(function() {
         $('div.spinner-div').html('<div class="spinner">Loading...</div>');
 
         // Run the ajaxCall() method, after timeDelay interval. The spinner is removed once the ajax call is complete.
-        setTimeout(window.location="file:///Users/Yo/Desktop/Bootcamp/homework/group-projects/Group-Event-Project1/dashboard.html", eventObj.timeDelay);
+        setTimeout(window.location="https://pacific-reef-34702.herokuapp.com/dashboard.html", eventObj.timeDelay);
 
 
         // Capture the button clicked
