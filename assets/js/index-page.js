@@ -355,8 +355,6 @@ $(document).ready(function() {
         $('div.spinner-div').html('<div class="spinner">Loading...</div>');
 
         // Run the ajaxCall() method, after timeDelay interval. The spinner is removed once the ajax call is complete.
-        setTimeout(window.location="https://pacific-reef-34702.herokuapp.com/dashboard.html", eventObj.timeDelay);
-
 
         // Capture the button clicked
         var btn = $(this).attr("id");
