@@ -33,32 +33,41 @@
 		<!-- Spinner container -->
     	<div class="spinner-div"></div>
 
-    	<!-- Modal for app login -->
-    	 <div class="modal fade loginModal" tabindex="-1" role="dialog">
-    	    <div class="modal-dialog" role="document">
-    	        <div class="modal-content">
-    	            <div class="modal-header">
-    	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-    	                <h3 class="modal-title"> eventi login </h3>
-    	            </div>
-    	            <div class="modal-body">
-    	                <div class="form-group login-form">
-                        	<label> email address </label>
-                        	<input type="text" class="form-control" id="login-email">
-	
-                        	<label> password </label>
-                        	<input type="password" class="form-control" id="login-pass">
-                        </div>
-                    </div> <!-- .modal-body -->
-    	            <div class="modal-footer text-center">
-    	                <button type="button" class="btn" id="login" data-dismiss="modal"> login     </button>
-    	                <button type="button" class="btn" id="fbook" data-dismiss="modal"> facebook  </button>
-    	                <button type="button" class="btn" id="googs" data-dismiss="modal"> google    </button>
-    	                <button type="button" class="btn" id="join"  data-dismiss="modal"> sign up   </button>
-    	            </div>
-    	         </div>
-    	    </div>
-    	</div><!-- .alertModal -->
+    	<!-- Modal for login information -->
+    <div class="modal fade loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h3 class="modal-title"> event information </h3>
+                </div>
+                <div class="modal-body text-center">
+                     <a href="#" class="btn btn-default facebook" id="facebook"> <i class="fa fa-facebook modal-icons"></i> Sign In with Facebook </a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Close </button>
+                </div>
+             </div>
+        </div>
+    </div><!-- /.eventModal -->
+
+    <!-- Modal for user already logged in -->
+     <div class="modal fade loggedModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <h3 class="modal-title"> eventi </h3>
+                </div>
+                <div class="modal-body text-center">
+                    <h3> Thanks for logging in! </h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"> Close </button>
+                </div>
+             </div>
+        </div>
+    </div><!-- /.alertModal -->
 
     	<!-- Modal for program alerts -->
     	 <div class="modal fade alertModal" tabindex="-1" role="dialog">
@@ -77,6 +86,9 @@
     	         </div>
     	    </div>
     	</div><!-- /.alertModal -->
+
+		<!-- Login link -->
+		<h2 class="login-link" id="login"> login </h2>
 
 		<!-- Login link -->
 		<h2 class="login-link"> login </h2>
@@ -148,5 +160,68 @@
 
 		<!-- Custom js application code -->
 		<script src="assets/js/index-page.js"></script>
+<script>
+		 // setTimeout(function () {
+   //          window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
+   //      }, 1000);
+var database = firebase.database();
+//const auth = firebase.auth();
+var provider = new firebase.auth.FacebookAuthProvider();
+var googprovider = new firebase.auth.GoogleAuthProvider();
+var uidUser;
+var currentUserProfile;
+var currentUserRef;
+var user;
+var userName;
+var userEmail;
+var userImg;
+
+firebase.auth().getRedirectResult().then(function(result) {
+  if (result.credential) {
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    var token = result.credential.accessToken;
+    console.log(token);
+    console.log(result);
+    user = result.user;
+    console.log(user.displayName);
+    userName = user.displayName;
+    userEmail = user.email;
+    console.log(user.email);
+    console.log(user.photoURL);
+    userImg = user.photoURL;
+    currentUserProfile = firebase.auth().currentUser;
+        uidUser = firebase.auth().currentUser.uid;
+        (console.log(uidUser));
+        currentUserRef = database.ref('Users/'+uidUser);
+        currentUserRef.update({
+             name: userName,
+             email: userEmail,
+             photo: userImg,
+             });
+    $('.loggedModal').modal("show");
+    setTimeout(function () {         
+         window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
+    }, 500);
+  };
+  }).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
+
+
+ $(document).on("click", "#login", function() {
+    $('.loginModal').modal("show");
+});
+
+$(document).on("click", "#facebook", function() {
+    firebase.auth().signInWithRedirect(provider);
+});
+</script>
 	</body>
 </html>

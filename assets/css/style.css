@@ -40,6 +40,12 @@ body {
     margin-left: 30px;
 	font-size: 32px;
 	font-weight: 600;
+	cursor: pointer;
+	transition: .5s;
+}
+
+.login-link:hover {
+	color: #31C0C5;
 }
 
 /* Main page heading */
@@ -72,6 +78,70 @@ label {
 	background: rgba(0,0,0,.3);
 	height: 420px;
 	border-radius: 10px;
+}
+
+/* Style the login modal container. Override styles for main search form */
+.modal-header {
+ 	background-color: #717171;
+ 	border-radius: 4px;
+ 	border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.modal-footer {
+	background-color: #717171;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.alertModal .modal-footer {
+	background-color: #fff;
+}
+
+.modal-header {
+ 	color: #FEDC32;
+}
+
+#modal-alert-msg {
+	font-size: 25px;
+}
+
+.login-form {
+	background: #fff;
+	height: auto;
+}
+
+.login-form label {
+	font-weight: 200;
+	color: #000;
+}
+
+.login-form .form-control {
+	box-shadow: none;
+	border: 1px solid gray;
+	color: gray;
+}
+
+/* Global styles for all buttons, copied from dash-main-template.css */
+.btn {
+ 	font-size: 20px;
+	border-radius: 3px;
+	background-color: #31C0C5;
+	border: none;
+	transition: .5s;
+ 	color: #fff;
+	letter-spacing: .5px;
+}
+
+.btn:hover, .btn:active, .btn:focus, .btn:active:focus {
+	color: #fff;
+	background-color: #239095;
+	outline: none;
+}
+
+/* Target the login modal buttons, specifically */
+.loginModal button {
+	margin: 0 20px;
 }
 
 /* Remove form input background, and make border thinner */
