@@ -370,7 +370,6 @@ $(document).ready(function() {
                 break;
             case "fbook":
                 firebase.auth().signInWithRedirect(fbProvider);
-                break;
             case "googs":
                 firebase.auth().signInWithRedirect(googleProvider);
         }
