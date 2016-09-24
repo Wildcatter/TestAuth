@@ -25,8 +25,8 @@ var config = {
 // Establish database global vars
 var database = firebase.database();
 const auth = firebase.auth();
-//var fbProvider = new firebase.auth.FacebookAuthProvider();
-//var googleProvider = new firebase.auth.GoogleAuthProvider();
+var fbProvider = new firebase.auth.FacebookAuthProvider();
+var googleProvider = new firebase.auth.GoogleAuthProvider();
 var currentUserRef;
 var user;
 var userId;
@@ -361,15 +361,15 @@ $(document).ready(function() {
         var errors = [];
         var msg = "";
 
-        // Validate the password
-        if(password == "") {
-            errors.push("You must enter a valid password! \n");
-        }
+        // // Validate the password
+        // if(password == "") {
+        //     errors.push("You must enter a valid password! \n");
+        // }
 
-        // Validate the email address
-        if(!validEmail.test(email)) {
-            errors.push("You must enter a valid email address!");
-        }
+        // // Validate the email address
+        // if(!validEmail.test(email)) {
+        //     errors.push("You must enter a valid email address!");
+        // }
 
         // If there were any errors, generate error msg, show alertModal and cease user credential processing
         if(errors.length > 0) {
