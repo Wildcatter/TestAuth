@@ -361,7 +361,6 @@ $(document).ready(function() {
         // Capture the button clicked
         var btn = $(this).attr("id");
         console.log("btn: " + btn);
-        return false;
 
         // Process user login credentials based on button clicked
         switch(btn) {
