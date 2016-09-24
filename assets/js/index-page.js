@@ -321,7 +321,7 @@ $(document).ready(function() {
     });
 
     $(document).on("click", "#fbook", function() {
-    firebase.auth().signInWithRedirect(provider);
+    firebase.auth().signInWithRedirect(fbProvider);
     });
 
     // // Show the modal if user clicks 'login'
@@ -400,4 +400,4 @@ $(document).ready(function() {
         // Execute the ajax call, and save response to localStorage
         eventObj.executeQueryUrl(dataObj);
     });
-});
+// });
