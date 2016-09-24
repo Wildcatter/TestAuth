@@ -24,15 +24,16 @@ var config = {
 
 // Establish database global vars
 var database = firebase.database();
-const auth = firebase.auth();
+//const auth = firebase.auth();
 var fbProvider = new firebase.auth.FacebookAuthProvider();
-var googleProvider = new firebase.auth.GoogleAuthProvider();
+var googleprovider = new firebase.auth.GoogleAuthProvider();
+var uidUser;
+var currentUserProfile;
 var currentUserRef;
 var user;
-var userId;
-var userImg;
 var userName;
 var userEmail;
+var userImg;
 
 
 firebase.auth().getRedirectResult().then(function(result) {
@@ -60,7 +61,7 @@ firebase.auth().getRedirectResult().then(function(result) {
     $('.loggedModal').modal("show");
     setTimeout(function () {         
          window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
-    }, 500);
+    }, 1000);
   };
   }).catch(function(error) {
   // Handle Errors here.
