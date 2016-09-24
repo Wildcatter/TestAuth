@@ -39,29 +39,30 @@ firebase.auth().getRedirectResult().then(function(result) {
   if (result.credential) {
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var token = result.credential.accessToken;
-    console.log("token: " + token);
-    console.log("result: " + result);
-  }
-
-  // The signed-in user info.
-  user = result.user;
-
-  console.log("user displayName: " + user.displayName);
-  userName = user.displayName;
-
-  console.log("userEmail: " + user.email);
-  userEmail = user.email;
-
-  console.log("User photo: " + user.photoURL);
-  userImg = user.photoURL;
-/*
-  $(".fbook").html(user.displayName);
-
-  $(".fbook").append(user.email);
-
-  $(".fbook").append('<img src =' + user.photoURL + '>')
-*/
-}).catch(function(error) {
+    console.log(token);
+    console.log(result);
+    user = result.user;
+    console.log(user.displayName);
+    userName = user.displayName;
+    userEmail = user.email;
+    console.log(user.email);
+    console.log(user.photoURL);
+    userImg = user.photoURL;
+    currentUserProfile = firebase.auth().currentUser;
+        uidUser = firebase.auth().currentUser.uid;
+        (console.log(uidUser));
+        currentUserRef = database.ref('Users/'+uidUser);
+        currentUserRef.update({
+             name: userName,
+             email: userEmail,
+             photo: userImg,
+             });
+    $('.loggedModal').modal("show");
+    setTimeout(function () {         
+         window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
+    }, 500);
+  };
+  }).catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -69,36 +70,7 @@ firebase.auth().getRedirectResult().then(function(result) {
   var email = error.email;
   // The firebase.auth.AuthCredential type that was used.
   var credential = error.credential;
-  console.log("errors: " + errorCode + " " + errorMessage + " " + email + " " + credential);
-});
-
-
-firebase.auth().onAuthStateChanged(firebaseUser => {
-    if(firebaseUser) {
-        alert("THANKS FOR LOGGING IN. LOSER")
-        console.log("firebaseUser: " + firebaseUser);
-        userId = firebase.auth().currentUser.uid;
-        (console.log("uidUser" + uidUser));
-        currentUserRef = database.ref('users/' + userId);
-        if (firebase.auth().currentUser.displayName) {
-            currentUserRef.update({
-                name: userName,
-                email: userEmail,
-                photo: userImg,
-            });
-        } else {
-            currentUserRef.update({
-                name: firebase.auth().currentUser.email,
-                email: firebase.auth().currentUser.email,
-            });
-        };
-        console.log("currentUserRef: " + currentUserRef);
-        setTimeout(function () {
-            window.location = "https://pacific-reef-34702.herokuapp.com/dashboard.html";
-        }, 1000);
-    } else {
-        console.log("You are not logged in!");
-    }
+  // ...
 });
 
 // Establish email regex global
