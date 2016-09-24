@@ -15,12 +15,12 @@ var db = firebase.database();
 */
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyBKXSuOL_8TzGqi84Wna4x_HW5M7NoCR5o",
-  authDomain: "eventi-auth-testing.firebaseapp.com",
-  databaseURL: "https://eventi-auth-testing.firebaseio.com",
-  storageBucket: "eventi-auth-testing.appspot.com",
-  messagingSenderId: "515619523046"
-};
+    apiKey: "AIzaSyDaPvYALiV1qQwyDxIrIfkwCUerTu_uSiA",
+    authDomain: "firstproject-b5d04.firebaseapp.com",
+    databaseURL: "https://firstproject-b5d04.firebaseio.com",
+    storageBucket: "firstproject-b5d04.appspot.com",
+    };
+ firebase.initializeApp(config);
 
 firebase.initializeApp(config);
 
